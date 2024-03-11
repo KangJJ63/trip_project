@@ -40,4 +40,5 @@ public class UserEntity {
     // 일반사용자 / 관리자를 구분용
     private String role; 
     // 로그인 유무
+    //확인용
 }
