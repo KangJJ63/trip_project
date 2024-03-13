@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Camino - Join</title>
+<title>Camino - Find id</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travelix Project">
@@ -10,6 +10,7 @@
 <link href="/static/plugins/font-awesome-6.5.1/css/all.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/static/css/main_styles.css">
 <link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/static/css/inputstyle.css">
 </head>
 <body>
 
@@ -90,7 +91,7 @@
 
                     <div class="home_slider_content text-center">
                         <div class="home_slider_content_inner">
-                            <h3 class="main_nav_item_select">회원가입</h3>
+                            <h3 class="main_nav_item_select">아이디 찾기</h3>
                         </div>
                     </div>
                 </div>
@@ -98,42 +99,46 @@
         </div>
         {{>common/sidebar}}
     </div>
+</div>
 
-    
-    <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
-        <div class="menu_close_container"><div class="menu_close"></div></div>
-        <h1>Join Page</h1>
-        <form action="/join" method="post">
-            <label for="id">* Id: </label>
-            <input type="text" name="userId" placeholder="아이디를 입력하세요." required>
-            <button>중복 확인</button> <small>숫자-영문 소문자 이외 항목 미포함</small>
+
+    <div class="input_form_container">
+        <div class="input_title text-center">아이디 찾기</div>
+        
+
+        <form name="findIdForm" action="/findId" method="post">
+            <input type="text" id="username" name="username" placeholder="홍길동">
             <br>
-            <label for="pwd">* Password: </label>
-            <input type="password" name="userPw" placeholder="비밀번호를 입력하세요." required> <small>최소 8글자</small>
+            <input type="email" id="email" name="email" placeholder="id@casimo.com">
             <br>
-            <label for="pwd_equal"> Password 확인: </label>
-            <input type="password" placeholder="비밀번호 확인">
-            <br>
-            <label for="email">* Email: </label>
-            <input type="email" name="userEmail" placeholder="이메일을 입력하세요." required>
-            <br>
-            <label for="name">* Name: </label>
-            <input type="text" name="userNm" placeholder="이름을 입력하세요." required>
-            <br>
-            <label for="gender">Gender: </label>
-            <label for="Male">Male</label>
-            <input type="radio" id="Male" name="userSex" value="Male" checked>
-            <label for="Male">Female</label>
-            <input type="radio" id="Female" name="userSex" value="Female">
-            <br>
-            <label for="phone">* Phone: </label>
-            <input type="phone" name="userPhNmb" placeholder="전화번호를 입력하세요.">
-            <br>
-            <input type="submit" value="회원가입">
-            <!-- submit 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
-            <!-- dto로 받아서 서비스로 전달 -> mysql에 저장 -->
+            <input type="submit" value="아이디 찾기">
+            <button type="submit" id="form_submit_button" onclick="findIdCheck()">아이디 찾기(임시)</button>
+                <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
         </form>
-        <a href="/loginPage">로그인 화면 이동</a>
-        <a href="/board">홈으로 이동</a>    
+        <script>
+            //입력이 틀릴경우
+            function findIdCheck() {
+                let findIdForm = document.findIdForm
+                let username = document.getElementsByName('username').value;
+                let email = document.getElementById("email").value;
+
+                if (username == "") {
+                    alert("이름을 입력해주세요.");
+                } else if(email == "") {
+                    alert("이메일을 입력해주세요.")
+                } else {
+                    findIdForm.submit();
+                }
+                
+            }
+        </script>
+        <p class="join-btn-wrap">
+            <a href="/loginPage">로그인 화면 이동</a>
+            <a href="#">비밀번호 찾기</a>
+        </p>
+
+    </div>
+</div>
+
 </body>
 </html>

@@ -8,7 +8,7 @@ import com.example.travelproject.model.repository.UserRepository;
 
 @Service
 public class UserDao {
-    
+
     @Autowired
     private UserRepository userRepository;
 
@@ -27,4 +27,12 @@ public class UserDao {
     public void updateUser(UserEntity entity) {
         userRepository.save(entity);
     }
+
+    public UserEntity findId(String userNm, String userEmail) {
+        return userRepository.getUserDtoByEmail("userNm", "userEmail");
+    }
+
+    // public UserEntity findPwd(String userId) {
+    // return userRepository.getReferenceById(userId);
+    // }
 }

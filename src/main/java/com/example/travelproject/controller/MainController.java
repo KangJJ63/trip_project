@@ -16,10 +16,9 @@ import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
 
-
 @Controller
 public class MainController {
-    
+
     @Autowired
     private UserService userService;
 
@@ -29,9 +28,9 @@ public class MainController {
     /*
      * 누구나 접근 가능
      */
-    @GetMapping({"/index","/"})
+    @GetMapping({ "/index", "/" })
     public String index(Authentication authentication, Model model) {
-        if(authentication != null) {
+        if (authentication != null) {
             model.addAttribute("menuTitle", "홈");
             return "staff/user";
         }
@@ -56,9 +55,9 @@ public class MainController {
         userService.joinUserDto(dto);
         return "redirect:/loginPage";
     }
-    
+
     /*
-     * 로그인한 경우만 
+     * 로그인한 경우만
      */
     @GetMapping("/user/index")
     public String user(Authentication authentication, Model model) {
@@ -101,6 +100,19 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         return "staff/securedRoles";
+    }
+
+    // 아이디찾기 페이지 이동
+    @GetMapping("/findIdPage")
+    public String findIdPage() {
+
+        return "login/findIdPage";
+    }
+
+    @PostMapping("/findId")
+    public String findUserId(@ModelAttribute UserEntity dto) {
+    userService.
+    return "redirect:/loginpage";
     }
 
 }

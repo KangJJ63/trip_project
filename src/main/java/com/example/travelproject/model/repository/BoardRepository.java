@@ -6,8 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.travelproject.model.entity.BoardEntity;
 
-public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
-    public BoardEntity selectByNotice(long noticeId);
+public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
+    @Query(value = "select * from board where notice_id = :notice_id", nativeQuery = true)
+    public BoardEntity selectByNotice(Long notice_id);
 
     @Query(value = "select * from Notice order by desc", nativeQuery = true)
     public BoardEntity showNotice();

@@ -16,7 +16,7 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    
+
     @Autowired
     private UserRepository userRepository;
 
@@ -36,12 +36,12 @@ public class UserService {
     }
 
     public void joinUserDto(UserEntity dto) {
-        
-        // 권한 적용 
+
+        // 권한 적용
         dto.setRole("USER");
-        if(dto.getUserId().equals("admin")) {
+        if (dto.getUserId().equals("admin")) {
             dto.setRole("ADMIN");
-        } else if(dto.getUserId().equals("manager")) {
+        } else if (dto.getUserId().equals("manager")) {
             dto.setRole("MANAGER");
         }
 
@@ -62,6 +62,16 @@ public class UserService {
         if (dto.getUserNm() != null) {
             entity.setUserNm(dto.getUserNm());
         }
+    }
+
+    public String findUserId(UserEntity dto) {
+        UserEntity entity = userDao.findId("userNm", "userEmail");
+        // 이메일 검색 실패
+        if (entity == null) {
+            return null;
+        }
+        return entity.getUserId();
+
     }
 
 }
