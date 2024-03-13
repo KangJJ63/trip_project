@@ -87,75 +87,43 @@
 				</div>
 			</div>
 		</div>
-		{{>common/sidebar}}
+		<div id="rightHeader">
+			<input type="button" value=" 글올리기 " class="btn2" 
+			onclick="javascript:location.href='<%=cp%>/board/created.jsp';"/>			
+		</div>	
 	</div>
+	<div id="bbsList_list">
+		<div id="title">
+			<dl>
+				<dt class="num">번호</dt>
+				<dt class="subject">제목</dt>
+				<dt class="name">작성자</dt>
+				<dt class="created">작성일</dt>
+				<dt class="hitCount">조회수</dt>
+			</dl>
+		</div>
+		
+		<div id="lists">
+		<%for(BoardDto dto : lists){ %>
+			<dl>
+				<dd class="num"><%=dto.getNum() %></dd>
+				<dd class="subject">
+				<a href="<%=articleUrl %>&num=<%=dto.getNum()%>">
+				<%=dto.getSubject() %></a>
+				<!-- currentPage는 현재 내가보고있는 페이지 -->
+				</dd>
+				<dd class="name"><%=dto.getName() %></dd>
+				<dd class="created"><%=dto.getCreated() %></dd>
+				<dd class="hitCount"><%=dto.getHitCount() %></dd>
+			</dl>
+			<%} %>
+		</div>
+		<div id="footer">
+			<%=pageIndexList %>
+		</div>
+		
+	</div>
+	
 </div>
-
-
-    
-    <div id="container">
-        <div id="contents">
-            <div class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4">
-                <div class="title">
-                    <h2>
-                        <font color="333333">공지사항</font>
-                    </h2>
-                    <p>공지사항을 알려드리는 게시판입니다.</p>
-                </div>
-            </div>
-            <div class="boardList">
-                <table border="1" summary>
-                    <caption>공지 게시판 목록</caption>
-                    <colgroup class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4">
-                        <col style="width:70px;">
-                        <col style="width:auto;">
-                        <col style="width:84px;">
-                        <col style="width:80px;" class="">
-                    </colgroup>
-                    <thead class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4 ">
-                        <th scope="col">번호</th>
-                        <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">작성일</th>
-                    </thead>
-                    <tbody class="xans-element- xans-board xans-board-list-4 xans-board-list xans-board-4">
-                        <tr style="background-color: #FFFFFF; color:#555555;" class="xans-record">
-                            <td class="subject">
-
-                            </td>
-                        </tr>
-                        <tr style="background-color: #FFFFFF; color:#555555;" class="xans-record"></tr>
-                        <tr style="background-color: #FFFFFF; color:#555555;" class="xans-record"></tr>
-                        <tr style="background-color: #FFFFFF; color:#555555;" class="xans-record"></tr>
-                        <tr style="background-color: #FFFFFF; color:#555555;" class="xans-record"></tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="xans-element- xans-board xans-board-paging-4 xans-board-paging xans-board-4">
-                <p>
-                    <a href="?board_no=6&page=1">
-                        <img src="https://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_page_prev.gif" alt="이전 페이지">
-                    </a>
-                </p>
-                <ol>
-                    <li class="xans-record-">
-                        <a href="?board_no=6&amp;page=1" class="this">1</a>
-                    </li>
-                    <li class="xans-record-">
-                        <a href="?board_no=6&amp;page=2" class="this">2</a>
-                    </li>
-                    <li class="xans-record-">
-                        <a href="?board_no=6&amp;page=3" class="this">3</a>
-                    </li>
-                    <li class="xans-record-">
-                        <a href="?board_no=6&amp;page=4" class="this">4</a>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
-
-    </div>
-
+</body>
 {{>common/footer}}
