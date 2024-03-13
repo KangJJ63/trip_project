@@ -96,15 +96,16 @@ public class MainController {
 
     @PostMapping("/ConfirmId")
     @ResponseBody
-    public ResponseEntity<Boolean> confirmId(String userId) {
-        log.info("[ConfirmId]: " + userId);
+    public ResponseEntity<Boolean> confirmId(String id) {
+        log.info("[ConfirmId]: " + id);
         boolean result = true;
 
-        if(userId.trim().isEmpty()) {
-            log.info("userId" + userId);
+        if(id.trim().isEmpty()) {
+            log.info("userId" + id);
             result = false;
         } else {
-            if (userRepository.getUserDtoById(userId) != null) {
+            log.info("id: " + userRepository.getUserDtoById(id));
+            if (userRepository.getUserDtoById(id) != null) {
                 result = false;
             } else {
                 result = true;
