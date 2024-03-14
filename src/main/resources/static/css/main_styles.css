@@ -474,7 +474,7 @@ section
 }
 .logo a
 {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Beyond';
 	font-size: 30px;
 	color: #f4f4f8;
 	font-weight: 800;
@@ -2196,4 +2196,14 @@ section
 .footer_nav_item a:hover
 {
 	color: #FFFFFF;
+}
+.legend
+{
+	background-color: linear-gradient(to right, #fa9e1b, #8d4fff, #fa9e1b);
+	color: #FFFFFF;
+	padding: 3px 6px;
+}
+
+.input {
+	margin: 0.4rem;
 }
