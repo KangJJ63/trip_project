@@ -2,7 +2,6 @@ package com.example.travelproject.service;
 
 import com.example.travelproject.model.entity.UserEntity;
 
-
 public interface UserService {
 
     public void deleteUser(String userId);
@@ -13,5 +12,15 @@ public interface UserService {
     public void joinUserDto(UserEntity dto);
 
     public void updateUserDto(UserEntity dto);
+
+    public String findUserId(UserEntity dto) {
+        UserEntity entity = userDao.findId("userNm", "userEmail");
+        // 이메일 검색 실패
+        if (entity == null) {
+            return null;
+        }
+        return entity.getUserId();
+
+    }
 
 }
