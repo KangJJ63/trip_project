@@ -11,7 +11,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     public UserEntity getUserDtoById(@Param(value = "user_id") String name);
 
     @Query(value = "select * from user where user_nm = :user_nm and user_email = :user_email", nativeQuery = true)
-    public UserEntity getUserDtoByEmail(@Param(value = "user_nm") String userNm,
-            @Param(value = "user_email") String userEmail);
-
+    public UserEntity getUserDtoByEmail(
+        @Param(value = "user_nm") String userNm,
+        @Param(value = "user_email") String userEmail);
 }

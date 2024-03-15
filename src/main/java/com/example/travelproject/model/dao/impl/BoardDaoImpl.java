@@ -33,7 +33,7 @@ public class BoardDaoImpl implements BoardDao{
 
     // 게시글 선택 : select
     public BoardEntity findByNoticeId(long noticeId){
-        return boardRepository.findByNoticeId(noticeId);
+        return boardRepository.selectByNoticeId(noticeId);
     }
 
     // 게시글 목록 : show

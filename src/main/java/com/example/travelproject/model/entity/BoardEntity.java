@@ -31,7 +31,7 @@ public class BoardEntity {
     // private UserEntity userEntity; 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
-    private long noticeId; 
+    private long noticeId;
 
     // 작성자
     @ManyToOne

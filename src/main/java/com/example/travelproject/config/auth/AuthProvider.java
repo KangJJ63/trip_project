@@ -37,13 +37,17 @@ public class AuthProvider implements AuthenticationProvider {
         log.info("name: "+name+" / pwd: "+pwd);
 
         // ID 검증 
+        log.info("[AuthProvider][AuthUserService] Start");
         UserDetails userDetails = (AuthUserDto)securityUserService.loadUserByUsername(name);
+
         if(userDetails == null){
-            throw new UsernameNotFoundException("There is no username >> "+name);
+            log.info("[AuthProvider][UsernameNotFoundException] Start");
+            throw new UsernameNotFoundException("There is no username >>> " + name);
         }
         // PW 검증 
         else if (isNotMatches(pwd, userDetails.getPassword())) {
-            throw new BadCredentialsException("Your password is incorrect.");
+            log.info("[AuthProvider][BadCredentialsException] Start");
+            throw new BadCredentialsException("Your password is incorrect. >>> " + pwd);
         }
 
         return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());

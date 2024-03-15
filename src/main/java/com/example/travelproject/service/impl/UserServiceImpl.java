@@ -83,4 +83,13 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public String findUserId(UserEntity dto)  {
+        UserEntity entity = userDao.findId("userNm", "userEmail");
+        // 이메일 검색 실패
+        if (entity == null) {
+            return null;
+        }
+        return entity.getUserId();
+    }
 }

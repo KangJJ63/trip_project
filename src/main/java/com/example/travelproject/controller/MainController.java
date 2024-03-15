@@ -137,7 +137,7 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         model.addAttribute("admin", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
-        return "staff/admin1";
+        return "index";
     }
 
     @Secured("ADMIN")
@@ -164,7 +164,7 @@ public class MainController {
         model.addAttribute("userlist", userRepository.findAll());
         log.info("[admin]: " + userRepository.findAll());
 
-        return "staff/admin2";
+        return "staff/admin1";
     }
 
     // 아이디찾기 페이지 이동
