@@ -22,11 +22,10 @@ import com.example.travelproject.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Controller
 public class MainController {
-    
+
     @Autowired
     private UserService userService;
 
@@ -39,7 +38,7 @@ public class MainController {
     /*
      * 누구나 접근 가능
      */
-    @GetMapping({"/index","/"})
+    @GetMapping({ "/index", "/" })
     public String index(Authentication authentication, Model model) {
         if (authentication == null || userRepository.getUserDtoById(authentication.getName()) == null) {
             return "index";
@@ -66,11 +65,11 @@ public class MainController {
 
     @PostMapping("/join")
     public String join(@ModelAttribute UserEntity dto) {
-        
+
         userService.joinUserDto(dto);
         return "redirect:/loginPage";
     }
-    
+
     @PostMapping("/findPw")
     public String findPwd(@ModelAttribute UserEntity entity, Model model) {
         log.info("[find_pw1]: " + entity);
@@ -83,7 +82,7 @@ public class MainController {
         log.info("[find_pw1-2]: " + model);
         return "login/findPw";
     }
-    
+
     @PostMapping("/findPw2")
     public String findPw2(@ModelAttribute UserEntity entity, Authentication authentication) {
         log.info("[find_pw2]: " + entity);
@@ -139,7 +138,7 @@ public class MainController {
     
 
     /*
-     * 로그인한 경우만 
+     * 로그인한 경우만
      */
     @GetMapping("/user/index")
     public String user(Authentication authentication, Model model) {
@@ -188,9 +187,21 @@ public class MainController {
         model.addAttribute("admin", authentication.getName());
         model.addAttribute("userlist", userRepository.findAll());
         log.info("[admin]: " + userRepository.findAll());
-        
+
         return "staff/admin2";
     }
-    
 
+    // 아이디찾기 페이지 이동
+    @GetMapping("/findIdPage")
+    public String findIdPage() {
+
+        return "login/findIdPage";
+    }
+
+    // @PostMapping("/findId")
+    // public String findUserId(@ModelAttribute UserEntity dto) {
+    // userService.
+    // return "redirect:/loginpage";
+    // }
+//
 }

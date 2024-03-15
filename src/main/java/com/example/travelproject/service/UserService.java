@@ -2,7 +2,6 @@ package com.example.travelproject.service;
 
 import com.example.travelproject.model.entity.UserEntity;
 
-
 public interface UserService {
 
     public void deleteUser(String userId);
@@ -14,4 +13,5 @@ public interface UserService {
 
     public void updateUserDto(UserEntity dto);
 
+    public String findUserId(UserEntity dto);
 }
