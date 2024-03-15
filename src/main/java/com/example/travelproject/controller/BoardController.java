@@ -29,8 +29,15 @@ public class BoardController {
     //게시판 메인 페이지
     //권한 : 모두 접근 가능(authentication x)
     @GetMapping({"","/"})
-    public String mainBoard(Model model){
+    public String mainBoard(Authentication authentication, Model model){
         model.addAttribute("boardList", boardService.findNoticeList());
+
+        if (authentication != null) {
+            model.addAttribute("username", authentication.getName());
+            if (authentication.getName().equals("admin")) {
+                model.addAttribute("admin", authentication.getName());
+            }
+        }
         return "board/boardMain";
     }
 
@@ -38,10 +45,16 @@ public class BoardController {
     //게시글 작성
     //권한 : 관리자만(authentication)
     @GetMapping("/notice")
-    public String newNoticeForm(){
+    public String newNoticeForm(Authentication authentication, Model model){
+        if (authentication != null) {
+            model.addAttribute("username", authentication.getName());
+            if (authentication.getName().equals("admin")) {
+                model.addAttribute("admin", authentication.getName());
+            }
+        }
         return "board/noticeForm";
     }
-
+        
 
     // 작성한 게시글 저장
     // 권한 : 관리자만(authentication)
@@ -59,11 +72,17 @@ public class BoardController {
     // 글 상세페이지 
     // 권한 : 모두 
     @GetMapping("/notice/{noticeId}")
-    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model){
+    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model, Authentication authentication){
         log.info("[BoardController][viewNotice] start");
 
         BoardDto boardDto = boardService.findtByNoticeId(noticeId);
         model.addAttribute("notice", boardDto);
+        if (authentication != null) {
+            model.addAttribute("username", authentication.getName());
+            if (authentication.getName().equals("admin")) {
+                model.addAttribute("admin", authentication.getName());
+            }
+        }
         return "board/noticeView";
     }
 

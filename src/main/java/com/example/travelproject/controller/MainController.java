@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
@@ -31,6 +32,9 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private UserDao userDao;
 
     /*
      * 누구나 접근 가능
@@ -94,24 +98,45 @@ public class MainController {
         return "redirect:/loginPage";
     }
 
-    @PostMapping("/ConfirmId")
+    @PostMapping("/ConfirmId") // Id 중복확인
     @ResponseBody
-    public ResponseEntity<Boolean> confirmId(String userId) {
-        log.info("[ConfirmId]: " + userId);
+    public ResponseEntity<Boolean> confirmId(String id) {
+        log.info("[MainController][ConfirmId] Start: " + id);
         boolean result = true;
 
-        if(userId.trim().isEmpty()) {
-            log.info("userId" + userId);
+        if (id.trim().isEmpty()) { // 입력된 Id가 비어있는 경우
+            log.info("[ConfirmId][공백ID] >>> " + id);
             result = false;
         } else {
-            if (userRepository.getUserDtoById(userId) != null) {
-                result = false;
+            log.info("[ConfirmId][저장된 ID] >>> " + userRepository.getUserDtoById(id));
+            if (userRepository.getUserDtoById(id) != null) {
+                result = false; // 저장된 ID가 있다면 false -> 중복
             } else {
                 result = true;
             }
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    
+    // Email 중복확인 by 성민
+    @PostMapping("/ConfirmEmail") 
+    @ResponseBody
+    public ResponseEntity<Boolean> confirmEmail(String email) {
+        log.info("[MainController][confirmEmail] Start: " + email);
+        boolean result = true;
+
+        if (email.trim().isEmpty()) {
+            result = false;
+        } else {
+            if (userDao.findByUserEmail(email) != null) {
+                result = false; // 저장된 Email이 있다면 false -> 중복
+            } else {
+                result = true;
+            }
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
 
     /*
      * 로그인한 경우만 
@@ -137,7 +162,7 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         model.addAttribute("admin", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
-        return "staff/admin1";
+        return "staff/user";
     }
 
     @Secured("ADMIN")

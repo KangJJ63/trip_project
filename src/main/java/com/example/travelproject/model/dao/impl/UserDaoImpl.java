@@ -7,6 +7,9 @@ import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UserDaoImpl implements UserDao{
         
@@ -28,4 +31,12 @@ public class UserDaoImpl implements UserDao{
     public void updateUser(UserEntity entity) {
         userRepository.save(entity);
     }
+
+    // [이메일 중복 조회] by 성민
+    @Override
+    public UserEntity findByUserEmail(String userEmail) {
+        log.info("[UserDaoImpl][findByUserEmail] >>> " + userRepository.findByUserEmail(userEmail));
+        return userRepository.findByUserEmail(userEmail);
+    }
+    
 }
