@@ -9,14 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.travelproject.model.entity.BoardEntity;
 
-<<<<<<< HEAD
-public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
-    public BoardEntity selectByNotice(long noticeId);
-
-    // @Query(value = "select * from Notice order by desc", nativeQuery = true)
-    // public BoardEntity showNotice();
-}
-=======
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
     //해당 게시글 가져오기 
@@ -28,4 +20,3 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
     public BoardEntity updateViewCnt(@Param(value = "noticeId") long noticeId);
 
 }
->>>>>>> e287322416d704b27da654d9a4495384a6dfc3b5

@@ -28,4 +28,10 @@ public class UserDaoImpl implements UserDao{
     public void updateUser(UserEntity entity) {
         userRepository.save(entity);
     }
+
+    public UserEntity findId(String userNm, String userEmail)  {
+        return userRepository.getUserDtoByEmail("userNm", "userEmail");
+    }
+
+    
 }

@@ -1,12 +1,4 @@
 {{>common/header}}
-<<<<<<< HEAD
-<link href="/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="/static/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/static/css/blog_styles.css">
-<link rel="stylesheet" type="text/css" href="/static/css/blog_responsive.css">
-</head>
-
-=======
 <title>게 시 판</title>
 </head>
 <style>
@@ -60,7 +52,6 @@
 		padding-top:2%;
 	}
 </style>
->>>>>>> e287322416d704b27da654d9a4495384a6dfc3b5
 <body>
 
 <div class="super_container">
@@ -92,99 +83,6 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-			</div>		
-		</div>
-
-		<!-- Main Navigation -->
-
-		<nav class="main_nav">
-			<div class="container">
-				<div class="row">
-					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-						<div class="logo_container">
-							<div class="logo"><a href="/"><img src="/static/img/logo.png" alt="">TRIP(가제)</a></div>
-						</div>
-						<div class="main_nav_container ml-auto">
-							<ul class="main_nav_list">
-								<li class="main_nav_item"><a href="/">홈</a></li>
-								<li class="main_nav_item"><a href="/lodge">숙박</a></li>
-								<li class="main_nav_item"><a href="/plan">일정</a></li>
-								<li class="main_nav_item"><a href="/board">게시판</a></li>
-								<!-- <li class="main_nav_item"><a href="contact.html">탑 메뉴</a></li> -->
-							</ul>
-						</div>
-
-						<div class="hamburger ml-lg-0 ml-auto">
-							<i class="fa fa-bars trans_200"></i>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</nav>
-
-	</header>
-	<div class="home">
-		
-		<!-- Home Slider -->
-
-		<div class="home_slider_container">
-			
-			<div class="owl-carousel home_slider">
-				<!-- Slider Item -->
-				<div class="home_slider_item">
-					<!-- Image by https://unsplash.com/@anikindimitry -->
-					<div class="home_slider_background" style="background-image:url(/static/img/home_slider.jpg)"></div>
-
-					<div class="home_slider_content text-center">
-						<div class="home_slider_content_inner">
-							<h1>{{menuTitle}}</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="rightHeader">
-			<input type="button" value=" 글올리기 " class="btn2" 
-			onclick="javascript:location.href='<%=cp%>/board/created.jsp';"/>			
-		</div>	
-	</div>
-	<div id="bbsList_list">
-		<div id="title">
-			<dl>
-				<dt class="num">번호</dt>
-				<dt class="subject">제목</dt>
-				<dt class="name">작성자</dt>
-				<dt class="created">작성일</dt>
-				<dt class="hitCount">조회수</dt>
-			</dl>
-		</div>
-		
-		<div id="lists">
-		<%for(BoardDto dto : lists){ %>
-			<dl>
-				<dd class="num"><%=dto.getNum() %></dd>
-				<dd class="subject">
-				<a href="<%=articleUrl %>&num=<%=dto.getNum()%>">
-				<%=dto.getSubject() %></a>
-				<!-- currentPage는 현재 내가보고있는 페이지 -->
-				</dd>
-				<dd class="name"><%=dto.getName() %></dd>
-				<dd class="created"><%=dto.getCreated() %></dd>
-				<dd class="hitCount"><%=dto.getHitCount() %></dd>
-			</dl>
-			<%} %>
-		</div>
-		<div id="footer">
-			<%=pageIndexList %>
-		</div>
-		
-	</div>
-	
-</div>
-</body>
-{{>common/footer}}
-=======
 			</div>
 			<div class="row notice_head">
 				<div class="col-1 align-items-center text-center">
@@ -236,4 +134,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 {{>common/footer}}	
->>>>>>> e287322416d704b27da654d9a4495384a6dfc3b5

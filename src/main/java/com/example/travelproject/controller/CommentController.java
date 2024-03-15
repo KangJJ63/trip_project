@@ -1,11 +1,5 @@
 package com.example.travelproject.controller;
 
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +11,6 @@ import com.example.travelproject.model.dto.CommentDto;
 import com.example.travelproject.service.CommentService;
 
 @Controller
->>>>>>> e287322416d704b27da654d9a4495384a6dfc3b5
 @RequestMapping("/comments")
 public class CommentController {
 
