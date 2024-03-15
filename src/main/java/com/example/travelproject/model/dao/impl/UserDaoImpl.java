@@ -32,6 +32,11 @@ public class UserDaoImpl implements UserDao{
         userRepository.save(entity);
     }
 
+    @Override
+    public UserEntity findId(String userNm, String userEmail) {
+        return userRepository.getUserDtoByEmail("userNm", "userEmail");
+    }
+
     // [이메일 중복 조회] by 성민
     @Override
     public UserEntity findByUserEmail(String userEmail) {

@@ -12,6 +12,8 @@ public interface UserDao {
 
     public void updateUser(UserEntity entity);
 
+    public UserEntity findId(String userNm, String userEmail); 
+
     // [이메일 중복 조회] by 성민
     public UserEntity findByUserEmail(String userEmail);
 

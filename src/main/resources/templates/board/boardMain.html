@@ -54,34 +54,12 @@
 </style>
 <body>
 
-<div class="super_container">
-	
-	<!-- Header -->
-
-	<header class="header">
-
-		<!-- Top Bar -->
-
-		<div class="top_bar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="user_box ml-auto my-auto">
-							<div class="user_box_link">
-								{{#userId}}
-								<a class="user_info btn btn-link p-1" role="button" href="#">
-									<i class="fas fa-circle-user"></i>
-									<span>재전</span>
-								</a>
-								{{/userId}}
-								{{^userId}}
-								<a class="user_join btn btn-light my-1 px-1 py-0" role="button" href="/loginPage" style="font-size:15px;" >
-									로그인 / 회원가입
-								</a>
-								{{/userId}}
-							</div> 
-						</div>
-					</div>
+<div class="noticeList">
+	<div class="container">
+		<div class="notice_panel">
+			<div class="row">
+				<div class="col">
+					<h2 class="notice_title text-center">공지사항</h2>
 				</div>
 			</div>
 			<div class="row notice_head">

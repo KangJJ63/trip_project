@@ -188,7 +188,7 @@ public class MainController {
         model.addAttribute("userlist", userRepository.findAll());
         log.info("[admin]: " + userRepository.findAll());
 
-        return "staff/admin2";
+        return "staff/admin1";
     }
 
     // 아이디찾기 페이지 이동
