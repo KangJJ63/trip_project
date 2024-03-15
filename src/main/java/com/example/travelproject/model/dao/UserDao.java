@@ -17,4 +17,7 @@ public interface UserDao {
     // public UserEntity findPwd(String userId) {
     // return userRepository.getReferenceById(userId);
     // }
+
+    // [이메일 중복 조회] by 성민
+    public UserEntity findByUserEmail(String userEmail);
 }

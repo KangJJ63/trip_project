@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     public UserEntity getUserDtoByEmail(
         @Param(value = "user_nm") String userNm,
         @Param(value = "user_email") String userEmail);
+
+    // [이메일 중복 조회] by 성민
+    public UserEntity findByUserEmail(String userEmail);
 }

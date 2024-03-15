@@ -30,7 +30,7 @@ public class AuthProvider implements AuthenticationProvider {
     // ID, PW 검증 확인!!
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("[AuthProvider][authenticate] Start");
+        log.info("[AuthProvider][authenticate]: Start");
 
         String name= authentication.getName();
 		String pwd= (String)authentication.getCredentials();
@@ -39,6 +39,7 @@ public class AuthProvider implements AuthenticationProvider {
         // ID 검증 
         log.info("[AuthProvider][AuthUserService] Start");
         UserDetails userDetails = (AuthUserDto)securityUserService.loadUserByUsername(name);
+        log.info("[AuthProvider][AuthUserService]: " + userDetails);
 
         if(userDetails == null){
             log.info("[AuthProvider][UsernameNotFoundException] Start");

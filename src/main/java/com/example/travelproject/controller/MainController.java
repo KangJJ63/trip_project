@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
@@ -31,11 +32,15 @@ public class MainController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserDao userDao;
+
     /*
      * 누구나 접근 가능
      */
     @GetMapping({ "/index", "/" })
     public String index(Authentication authentication, Model model) {
+        log.info("[MainController][index] Start: " + authentication);
         if (authentication == null || userRepository.getUserDtoById(authentication.getName()) == null) {
             return "index";
         }
@@ -89,29 +94,48 @@ public class MainController {
             authentication.setAuthenticated(false);
             log.info("[find_pw2-3][auth]: " + authentication);
         }
-
         return "redirect:/loginPage";
     }
 
-    @PostMapping("/ConfirmId")
+    @PostMapping("/ConfirmId") // Id 중복확인
     @ResponseBody
     public ResponseEntity<Boolean> confirmId(String id) {
-        log.info("[ConfirmId]: " + id);
+        log.info("[MainController][ConfirmId] Start: " + id);
         boolean result = true;
 
-        if (id.trim().isEmpty()) {
-            log.info("userId" + id);
+        if (id.trim().isEmpty()) { // 입력된 Id가 비어있는 경우
+            log.info("[ConfirmId][공백ID] >>> " + id);
             result = false;
         } else {
-            log.info("id: " + userRepository.getUserDtoById(id));
+            log.info("[ConfirmId][저장된 ID] >>> " + userRepository.getUserDtoById(id));
             if (userRepository.getUserDtoById(id) != null) {
-                result = false;
+                result = false; // 저장된 ID가 있다면 false -> 중복
             } else {
                 result = true;
             }
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    
+    // Email 중복확인 by 성민
+    @PostMapping("/ConfirmEmail") 
+    @ResponseBody
+    public ResponseEntity<Boolean> confirmEmail(String email) {
+        log.info("[MainController][confirmEmail] Start: " + email);
+        boolean result = true;
+
+        if (email.trim().isEmpty()) {
+            result = false;
+        } else {
+            if (userDao.findByUserEmail(email) != null) {
+                result = false; // 저장된 Email이 있다면 false -> 중복
+            } else {
+                result = true;
+            }
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
 
     /*
      * 로그인한 경우만

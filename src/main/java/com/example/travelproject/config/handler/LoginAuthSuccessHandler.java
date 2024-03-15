@@ -27,7 +27,7 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
   @Override
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
   Authentication authentication) throws IOException, ServletException {
-    log.info("[LoginAuthSuccessHandler][onAuthenticationSuccess] Start");
+    log.info("[LoginAuthSuccessHandler][onAuthenticationSuccess]: Start");
     
     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     userService.updateIsLoginById(userDetails.getUsername(), true);

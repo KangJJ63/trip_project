@@ -14,6 +14,9 @@ import com.example.travelproject.config.handler.LoginAuthFailureHandler;
 import com.example.travelproject.config.handler.LoginAuthSuccessHandler;
 import com.example.travelproject.config.handler.LogoutAuthSuccesshandler;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration // 스프링 설정 파일!!
 @EnableWebSecurity // 여러가지 설정 중에서 시큐리티 설정!!
 // @Secured 어노테이션 활성화, @PreAuthorize 어노테이션 활성화  
@@ -52,6 +55,7 @@ public class SecurityConfig {
     @Bean
     // 인증(로그인) & 인가(권한)에 대한 시큐리티 설정!!
     public SecurityFilterChain finteFilterChain(HttpSecurity http) throws Exception {
+        log.info("[SecurityConfig][finteFilterChain] Start");
 
         // CSRF란, Cross Site Request Forgery의 약자로, 
         // 한글 뜻으로는 사이트간 요청 위조를 뜻합니다.

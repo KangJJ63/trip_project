@@ -29,6 +29,7 @@ import lombok.ToString;
 public class UserEntity {
     @Id // 기본키: 유니크
     @NotBlank
+    @Pattern(regexp="^[a-zA-Z]*$")
     private String userId;
     @NotBlank
     private String userPw;

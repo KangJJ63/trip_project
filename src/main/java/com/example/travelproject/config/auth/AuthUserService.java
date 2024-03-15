@@ -24,6 +24,7 @@ public class AuthUserService implements UserDetailsService {
         log.info("[UserRepository][getUserDtoById]: Start");
         UserEntity userDto = userRepository.getUserDtoById(name);
         // username의 데이터가 database에 존재함(가입함)!!
+        log.info("[UserRepository][getUserDtoById]: " + userDto);
         if(userDto != null) {
             return new AuthUserDto(userDto);
         }
