@@ -46,17 +46,20 @@ public class BoardServiceImpl implements BoardService{
     // 글 수정 : update
     public void updateNotice(BoardDto dto){
         BoardEntity entity = boardDao.findByNoticeId(dto.getNoticeId());
+        entity.setUser(userDao.findByUserId(dto.getUserId()));
+        entity.setTitle(dto.getTitle());
+        entity.setContents(dto.getContents());
         boardDao.updateNotice(entity);
     }
 
     // 글 삭제 : delete
-    public void deleteNotice(long noticeId){
+    public void deleteNotice(Long noticeId){
         BoardEntity entity = boardDao.findByNoticeId(noticeId);
         boardDao.deleteNotice(entity.getNoticeId());
     }
 
     // 글 선택
-    public BoardDto findtByNoticeId(long noticeId){
+    public BoardDto findtByNoticeId(Long noticeId){
         BoardEntity entity = boardDao.findByNoticeId(noticeId);
         BoardDto dto = new BoardDto(); 
         dto.setNoticeId(noticeId);
@@ -72,8 +75,10 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardDto> findNoticeList(){
         List<BoardEntity> entities = boardDao.findNoticeList();
         List<BoardDto> dtoList = new ArrayList<>();
+        int rowNum = entities.size();
         for(BoardEntity boardEntity : entities){
             BoardDto dto = new BoardDto(); 
+            dto.setRowNum(rowNum--);
             dto.setNoticeId(boardEntity.getNoticeId());
             dto.setUserId(boardEntity.getUser().getUserId());
             dto.setTitle(boardEntity.getTitle());
@@ -107,7 +112,7 @@ public class BoardServiceImpl implements BoardService{
     }
     
     // 조회수 증가
-    public void updateViewCnt(long noticeId) {
+    public void updateViewCnt(Long noticeId) {
         // BoardEntity entity = boardDao.findByNoticeId(noticeId);
         boardDao.updateViewCnt(noticeId);
     }

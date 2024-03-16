@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class BoardDto {
 
+    private int rowNum;
     private Long noticeId; 
     private String userId; 
     private String title; 
