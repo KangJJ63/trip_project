@@ -10,13 +10,13 @@ public interface BoardService {
     //글 수정 : update
     public void updateNotice(BoardDto dto);
     //글 삭제 : delete
-    public void deleteNotice(long noticeId);
+    public void deleteNotice(Long noticeId);
     //글 조회(1개)
-    public BoardDto findtByNoticeId(long noticeId);
+    public BoardDto findtByNoticeId(Long noticeId);
     //글 리스트 
     public List<BoardDto> findNoticeList();
     //검색 결과 리스트 
     public List<BoardDto> findSearchList(String keyword); 
     //조회수 증가
-    public void updateViewCnt(long noticeId); 
+    public void updateViewCnt(Long noticeId); 
 }

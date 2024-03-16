@@ -28,12 +28,22 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
   @Override
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) throws IOException, ServletException {
-      log.info("[LoginAuthSuccessHandler][onAuthenticationSuccess] Start");
+  Authentication authentication) throws IOException, ServletException {
+    log.info("[LoginAuthSuccessHandler][onAuthenticationSuccess]: Start");
+    
     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     userService.updateIsLoginById(userDetails.getUsername(), true);
+    
     if (userDetails.getUsername() == null) {
       response.sendRedirect("/index");
+    }else{
+      HttpSession session = request.getSession();
+      UserDto dto = userService.findByUserId(userDetails.getUsername());
+
+      session.setAttribute("userId",dto.getUserId());
+      session.setAttribute("role", dto.getRole());
+      
+      log.info("Authorities : "+userDetails.getAuthorities());
     } else {
       HttpSession session = request.getSession();
       UserDto dto = userService.findByUserId(userDetails.getUsername());

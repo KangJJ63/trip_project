@@ -825,12 +825,13 @@ section
 }
 .contact_form_name
 {
-	width: calc((100% - 30px) / 2);
-	margin-right: 30px;
+	width: 50%;
+	margin-top: 15px;
 }
 .contact_form_email
 {
-	width: calc((100% - 30px) / 2);
+	width: 50%;
+	margin-top: 15px;
 }
 .contact_form_subject
 {
@@ -853,7 +854,7 @@ section
 }
 .form_submit_button
 {
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: 700;
 	color: #fff;
 	text-transform: uppercase;
@@ -878,35 +879,35 @@ section
 .input_field::-webkit-input-placeholder,
 .text_field::-webkit-input-placeholder
 {
-	font-size: 12px !important;
+	font-size: 15px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
 }
 .input_field:-moz-placeholder,
 .text_field:-moz-placeholder
 {
-	font-size: 12px !important;
+	font-size: 15px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
 }
 .input_field::-moz-placeholder,
 .text_field::-moz-placeholder
 {
-	font-size: 12px !important;
+	font-size: 15px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
 } 
 .input_field:-ms-input-placeholder,
 .text_field:-ms-input-placeholder
 { 
-	font-size: 12px !important;
+	font-size: 15px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
 }
 .input_field::input-placeholder,
 .text_field::input-placeholder
 {
-	font-size: 12px !important;
+	font-size: 15px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
 }
@@ -1240,7 +1241,8 @@ section
 }
 .contact_info_item
 {
-	margin-bottom: 22px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 .contact_info_icon
 {
@@ -1258,7 +1260,7 @@ section
 {
 	color: #FFFFFF;
 	line-height: 2.14;
-	margin-top: -4px;
+	margin-top: 4px;
 }
 .contact_info_item:hover .contact_info_text,
 .contact_info_item:hover .contact_info_text a

@@ -1,7 +1,5 @@
 package com.example.travelproject.model.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.example.travelproject.config.base.BaseEntity;
 
 import jakarta.persistence.Column;
