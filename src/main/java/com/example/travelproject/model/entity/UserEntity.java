@@ -3,9 +3,7 @@ package com.example.travelproject.model.entity;
 import java.util.List;
 
 import com.example.travelproject.config.base.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
