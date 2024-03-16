@@ -15,17 +15,12 @@ public class LodgeController {
 
     @GetMapping({"","/"})
     public String mainLodge(Authentication authentication, Model model){
-<<<<<<< HEAD
         log.info("[LodgeController][mainLodge]: Start");
-        if (authentication.getName().equals("admin")) {
-            model.addAttribute("admin", authentication.getName());
-=======
         if (authentication != null){
             model.addAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 model.addAttribute("admin", authentication.getName());
             }
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
         }
         return "lodge/lodgeMain";
     }

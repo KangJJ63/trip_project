@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.travelproject.config.base.DateUtil;
 import com.example.travelproject.model.dao.BoardDao;
 import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.dto.BoardDto;

@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@SuppressWarnings("null")
 public class UserServiceImpl implements UserService{
     
     @Autowired
@@ -83,11 +84,7 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     @Override
-=======
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
     public String findUserId(UserEntity dto)  {
         UserEntity entity = userDao.findId("userNm", "userEmail");
         // 이메일 검색 실패
@@ -96,7 +93,7 @@ public class UserServiceImpl implements UserService{
         }
         return entity.getUserId();
     }
-=======
+
     public UserDto findByUserId(String userId){
         UserEntity userEntity = userDao.findByUserId(userId);
         UserDto userDto = new UserDto();
@@ -105,6 +102,4 @@ public class UserServiceImpl implements UserService{
         userDto.setRole(userEntity.getRole());
         return userDto;
     }
-
->>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
 }

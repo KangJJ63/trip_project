@@ -34,11 +34,7 @@ public class BoardEntity extends BaseEntity{
     // private UserEntity userEntity; 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
-<<<<<<< HEAD
-    private long noticeId;
-=======
     private Long noticeId; 
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 
     // 작성자
     @ManyToOne

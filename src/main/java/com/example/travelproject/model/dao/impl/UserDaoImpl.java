@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@SuppressWarnings("null")
 public class UserDaoImpl implements UserDao{
         
     @Autowired
@@ -43,8 +44,5 @@ public class UserDaoImpl implements UserDao{
         log.info("[UserDaoImpl][findByUserEmail] >>> " + userRepository.findByUserEmail(userEmail));
         return userRepository.findByUserEmail(userEmail);
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 }

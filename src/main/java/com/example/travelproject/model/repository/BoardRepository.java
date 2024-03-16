@@ -2,22 +2,13 @@ package com.example.travelproject.model.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-<<<<<<< HEAD
-=======
 import org.springframework.data.jpa.repository.Modifying;
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.travelproject.model.entity.BoardEntity;
 
-<<<<<<< HEAD
-public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
-    @Query(value = "select * from board where notice_id = :notice_id", nativeQuery = true)
-    public BoardEntity selectByNoticeId(@Param(value = "notice_id") long noticeId);
-=======
 import jakarta.transaction.Transactional;
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long>{

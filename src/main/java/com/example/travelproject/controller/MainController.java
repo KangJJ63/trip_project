@@ -35,15 +35,12 @@ public class MainController {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private UserDao userDao;
-
     /*
      * 누구나 접근 가능
      */
     @GetMapping({ "/index", "/" })
     public String index(Authentication authentication, Model model) {
-        log.info("[MainController][index] Start: " + authentication);
+        log.info("[MainController][index] Start: authentication >>> " + authentication);
         if (authentication == null || userRepository.getUserDtoById(authentication.getName()) == null) {
             return "index";
         }
@@ -164,11 +161,7 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         model.addAttribute("admin", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
-<<<<<<< HEAD
-        return "index";
-=======
         return "staff/user";
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
     }
 
     @Secured("ADMIN")

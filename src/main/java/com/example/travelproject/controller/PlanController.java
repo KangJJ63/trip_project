@@ -15,18 +15,12 @@ public class PlanController {
 
     @GetMapping({"","/"})
     public String mainPlan(Authentication authentication, Model model){
-<<<<<<< HEAD
-        log.info("[LodgeController][mainPlan]: Start");
-        if (authentication.getName().equals("admin")) {
-            model.addAttribute("admin", authentication.getName());
-=======
-
+        log.info("[PlanController][mainPlan]: Start");
         if (authentication != null) {
             model.addAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 model.addAttribute("admin", authentication.getName());
             }
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
         }
         return "plan/planMain";
     }

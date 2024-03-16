@@ -20,8 +20,7 @@ public class AuthUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        log.info("[AuthUserService][loadUserByUsername]: Start");
-        log.info("[UserRepository][getUserDtoById]: Start");
+        log.info("[AuthUserService][loadUserByUsername] Start");
         UserEntity userDto = userRepository.getUserDtoById(name);
         // username의 데이터가 database에 존재함(가입함)!!
         log.info("[UserRepository][getUserDtoById]: " + userDto);

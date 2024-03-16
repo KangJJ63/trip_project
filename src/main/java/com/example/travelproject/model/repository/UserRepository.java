@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.travelproject.model.entity.UserEntity;
 
+
 public interface UserRepository extends JpaRepository<UserEntity, String> {
     @Query(value = "select * from user where user_id = :user_id", nativeQuery = true)
     public UserEntity getUserDtoById(@Param(value = "user_id") String name);
@@ -15,11 +16,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
         @Param(value = "user_nm") String userNm,
         @Param(value = "user_email") String userEmail);
 
-    // [이메일 중복 조회] by 성민
+    // 이메일 중복 조회
     public UserEntity findByUserEmail(String userEmail);
-<<<<<<< HEAD
-}
-=======
     
 }
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287

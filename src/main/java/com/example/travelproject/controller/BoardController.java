@@ -80,11 +80,7 @@ public class BoardController {
     // 글 상세페이지 
     // 권한 : 모두 
     @GetMapping("/notice/{noticeId}")
-<<<<<<< HEAD
-    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model, Authentication authentication){
-=======
     public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model,HttpSession session){
->>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
         log.info("[BoardController][viewNotice] start");
 
         boardService.updateViewCnt(noticeId); 
@@ -99,16 +95,8 @@ public class BoardController {
             log.info(dto.toString());
         }
         model.addAttribute("notice", boardDto);
-<<<<<<< HEAD
-        if (authentication != null) {
-            model.addAttribute("username", authentication.getName());
-            if (authentication.getName().equals("admin")) {
-                model.addAttribute("admin", authentication.getName());
-            }
-=======
         if(!commentDtos.isEmpty()){
             model.addAttribute("commentDtos", commentDtos);
->>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
         }
         return "board/noticeView";
     }

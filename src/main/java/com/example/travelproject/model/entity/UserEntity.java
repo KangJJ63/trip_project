@@ -2,8 +2,6 @@ package com.example.travelproject.model.entity;
 
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.example.travelproject.config.base.BaseEntity;
 
 import jakarta.persistence.CascadeType;

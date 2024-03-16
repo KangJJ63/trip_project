@@ -42,6 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void updateComment(Long id, CommentDto dto) {
+        log.info("[CommentServiceImpl][updateComment]: Start");
         Optional<CommentEntity> commentOptional = commentDao.findCommentById(id);
         if (commentOptional.isPresent()) {
             CommentEntity comment = commentOptional.get();

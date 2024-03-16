@@ -12,6 +12,7 @@ import com.example.travelproject.model.entity.CommentEntity;
 import com.example.travelproject.model.repository.CommentRepository;
 
 @Component
+@SuppressWarnings("null")
 public class CommentDaoImpl implements CommentDao {
 
     @Autowired

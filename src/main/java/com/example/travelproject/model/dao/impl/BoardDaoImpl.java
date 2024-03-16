@@ -11,6 +11,7 @@ import com.example.travelproject.model.entity.BoardEntity;
 import com.example.travelproject.model.repository.BoardRepository;
 
 @Service
+@SuppressWarnings("null")
 public class BoardDaoImpl implements BoardDao{
 
     @Autowired
@@ -31,15 +32,9 @@ public class BoardDaoImpl implements BoardDao{
         boardRepository.deleteById(noticeId);
     }
 
-<<<<<<< HEAD
-    // 게시글 선택 : select
-    public BoardEntity findByNoticeId(long noticeId){
-        return boardRepository.selectByNoticeId(noticeId);
-=======
     // 게시글 선택 : find
     public  BoardEntity findByNoticeId(Long noticeId){
         return boardRepository.findByNoticeId(noticeId);
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
     }
 
     // 게시글 목록 
