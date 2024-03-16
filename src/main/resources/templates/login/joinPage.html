@@ -82,6 +82,39 @@
                         $("#label1").css("color", "black").text("사용 가능한 ID 입니다.");
                     } else {
                         $("#label1").css("color", "red").text("사용 불가능한 ID 입니다.");
+<<<<<<< HEAD
+=======
+                    }
+                }
+            }); //End Ajax
+        });
+    })
+
+    $(document).ready(function() {
+        // Email 중복 확인
+        $("#userEmail").on("focusout", function() {
+            
+            var email = $("#userEmail").val();
+
+            if(!email.match(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)) {
+                $("#label3").css("color", "red").text("올바른 Email 형식이 아닙니다.");
+                return false;
+                }
+
+            //Ajax로 전송
+            $.ajax({
+                url : './ConfirmEmail',
+                data : {
+                    email : email
+                },
+                type : 'POST',
+                dataType : 'json',
+                success : function(result) {
+                    if (result == true) {
+                        $("#label3").css("color", "black").text("사용 가능한 Email 입니다.");
+                    } else {
+                        $("#label3").css("color", "red").text("사용 불가능한 Email 입니다.");
+>>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
                     }
                 }
             }); //End Ajax
@@ -125,39 +158,9 @@
 <body>
 
 <div class="super_container">
-    
     <!-- Header -->
 
     <header class="header">
-
-        <!-- Top Bar -->
-
-        <div class="top_bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="user_box ml-auto my-auto">
-                            <div class="user_box_link">
-                                {{#username}}
-                                <a class="user_info btn btn-link p-1" role="button" href="#">
-                                    <i class="fas fa-circle-user"></i>
-                                    <span>{{username}}님 반갑습니다.</span>
-                                </a>
-                                {{/username}}
-                                {{^userId}}
-                                <a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:13px;" >
-                                    로그아웃
-                                </a>
-                                <a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/mypage" style="font-size:13px;" >
-                                    마이페이지
-                                </a>
-                                {{/userId}}
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </div>		
-        </div>
 
         <!-- Main Navigation -->
 
@@ -209,7 +212,6 @@
         </div>
         {{>common/sidebar}}
     </div>
-
     
     <div class="menu_content d-flex flex-column align-items-center justify-content-left text-center">
         <div class="menu_close_container"><div class="menu_close"></div></div>

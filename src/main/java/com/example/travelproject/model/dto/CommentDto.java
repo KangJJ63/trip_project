@@ -14,11 +14,11 @@ import lombok.ToString;
 @ToString
 public class CommentDto {
 
-    private long commentId;
-    private String notice; // 게시판 엔티티에 대한 참조
-    private String user; // 사용자 엔티티에 대한 참조
+    private Long commentId;
+    private Long noticeId; // 게시판 엔티티에 대한 참조
+    private String userId; // 사용자 엔티티에 대한 참조
     private String contents;
-    private Timestamp createDate;
+    private String createDate;
 
     // 기본 생성자, 전체 파라미터 생성자, Getter, Setter, ToString 메소드는 Lombok 어노테이션을 통해 자동 생성
 }

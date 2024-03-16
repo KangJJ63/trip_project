@@ -27,17 +27,34 @@ public class BoardDaoImpl implements BoardDao{
     }
 
     // 글 삭제 : delete
-    public void deleteNotice(long noticeId){
+    public void deleteNotice(Long noticeId){
         boardRepository.deleteById(noticeId);
     }
 
+<<<<<<< HEAD
     // 게시글 선택 : select
     public BoardEntity findByNoticeId(long noticeId){
         return boardRepository.selectByNoticeId(noticeId);
+=======
+    // 게시글 선택 : find
+    public  BoardEntity findByNoticeId(Long noticeId){
+        return boardRepository.findByNoticeId(noticeId);
+>>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
     }
 
-    // 게시글 목록 : show
+    // 게시글 목록 
     public List<BoardEntity> findNoticeList(){
         return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
     }
+
+    // 게시글 검색
+    public List<BoardEntity> findByTitleContaining(String keyword){
+        return boardRepository.findByTitleContaining(keyword);
+    }    
+
+    // 게시글 조회수 업데이트 
+    public void updateViewCnt(Long noticeId) {
+        boardRepository.updateViewCnt(noticeId);
+    }
+
 }

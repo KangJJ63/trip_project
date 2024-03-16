@@ -17,4 +17,9 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     // [이메일 중복 조회] by 성민
     public UserEntity findByUserEmail(String userEmail);
+<<<<<<< HEAD
 }
+=======
+    
+}
+>>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287

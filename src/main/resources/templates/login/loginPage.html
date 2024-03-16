@@ -44,35 +44,6 @@
 
     <header class="header">
 
-        <!-- Top Bar -->
-
-        <div class="top_bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="user_box ml-auto my-auto">
-                            <div class="user_box_link">
-                                {{#username}}
-                                <a class="user_info btn btn-link p-1" role="button" href="#">
-                                    <i class="fas fa-circle-user"></i>
-                                    <span>{{username}}님 반갑습니다.</span>
-                                </a>
-                                {{/username}}
-                                {{^userId}}
-                                <a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:13px;" >
-                                    로그아웃
-                                </a>
-                                <a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/mypage" style="font-size:13px;" >
-                                    마이페이지
-                                </a>
-                                {{/userId}}
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </div>		
-        </div>
-
         <!-- Main Navigation -->
 
         <nav class="main_nav">

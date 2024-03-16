@@ -31,6 +31,9 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private UserDao userDao;
@@ -161,7 +164,11 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         model.addAttribute("admin", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
+<<<<<<< HEAD
         return "index";
+=======
+        return "staff/user";
+>>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
     }
 
     @Secured("ADMIN")
@@ -203,5 +210,5 @@ public class MainController {
     // userService.
     // return "redirect:/loginpage";
     // }
-
+//
 }
