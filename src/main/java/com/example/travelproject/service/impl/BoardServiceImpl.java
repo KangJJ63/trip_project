@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.travelproject.config.base.DateUtil;
 import com.example.travelproject.model.dao.BoardDao;
 import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.dto.BoardDto;
@@ -45,18 +44,24 @@ public class BoardServiceImpl implements BoardService{
 
     // 글 수정 : update
     public void updateNotice(BoardDto dto){
-        BoardEntity entity = boardDao.findByNoticeId(dto.getNoticeId());
-        boardDao.updateNotice(entity);
+        BoardEntity updateEntity = boardDao.findByNoticeId(dto.getNoticeId());
+        UserEntity userEntity = userDao.findByUserId(dto.getUserId());
+        updateEntity.setUser(userEntity);
+        updateEntity.setTitle(dto.getTitle()); 
+        updateEntity.setContents(dto.getContents()); 
+        boardDao.updateNotice(updateEntity);
     }
 
+
     // 글 삭제 : delete
-    public void deleteNotice(long noticeId){
+    public void deleteNotice(Long noticeId){
         BoardEntity entity = boardDao.findByNoticeId(noticeId);
         boardDao.deleteNotice(entity.getNoticeId());
     }
 
+
     // 글 선택
-    public BoardDto findtByNoticeId(long noticeId){
+    public BoardDto findtByNoticeId(Long noticeId){
         BoardEntity entity = boardDao.findByNoticeId(noticeId);
         BoardDto dto = new BoardDto(); 
         dto.setNoticeId(noticeId);
@@ -68,12 +73,15 @@ public class BoardServiceImpl implements BoardService{
         return dto;
     }
 
+
     // 글 전체 리스트
     public List<BoardDto> findNoticeList(){
         List<BoardEntity> entities = boardDao.findNoticeList();
         List<BoardDto> dtoList = new ArrayList<>();
+        int rowNum = entities.size();
         for(BoardEntity boardEntity : entities){
             BoardDto dto = new BoardDto(); 
+            dto.setRowNum(rowNum--);
             dto.setNoticeId(boardEntity.getNoticeId());
             dto.setUserId(boardEntity.getUser().getUserId());
             dto.setTitle(boardEntity.getTitle());
@@ -85,9 +93,11 @@ public class BoardServiceImpl implements BoardService{
         return dtoList;   
     }
 
+
     public String localtimeToString(LocalDateTime localDateTime){
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDateTime);
     }
+
 
     // 검색 결과 리스트 
     public List<BoardDto> findSearchList(String keyword){
@@ -106,10 +116,12 @@ public class BoardServiceImpl implements BoardService{
         return dtoSearchList; 
     }
     
+
     // 조회수 증가
-    public void updateViewCnt(long noticeId) {
+    public void updateViewCnt(Long noticeId) {
         // BoardEntity entity = boardDao.findByNoticeId(noticeId);
         boardDao.updateViewCnt(noticeId);
     }
+    
     
 }

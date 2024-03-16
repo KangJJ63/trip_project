@@ -14,6 +14,7 @@ import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -38,7 +39,7 @@ public class MypageController {
         }
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        model.addAttribute("userId", userDetails.getUsername());
+        // model.addAttribute("userId", userDetails.getUsername());
         model.addAttribute("userPw", userRepository.getUserDtoById(userDetails.getUsername()).getUserPw());
         model.addAttribute("userEmail", userRepository.getUserDtoById(userDetails.getUsername()).getUserEmail());
 		return "staff/mypage";
@@ -57,9 +58,14 @@ public class MypageController {
     }
     
     @GetMapping("/signout")
-    public String signout(Authentication authentication) {
+    public String signout(Authentication authentication, HttpSession session) {
+        if (authentication == null) {
+            return "redirect:/index";
+        }
         log.info("[signout]: " + authentication);
         userService.deleteUser(authentication.getName());
+        session.removeAttribute("username");
+        authentication.setAuthenticated(false);
         return "redirect:/index";
     }
     

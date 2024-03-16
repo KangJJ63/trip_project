@@ -2,8 +2,6 @@ package com.example.travelproject.model.entity;
 
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.example.travelproject.config.base.BaseEntity;
 
 import jakarta.persistence.CascadeType;
@@ -31,6 +29,7 @@ import lombok.ToString;
 public class UserEntity extends BaseEntity{
     @Id // 기본키: 유니크
     @NotBlank
+    @Pattern(regexp="^[a-zA-Z\\d]*$")
     private String userId;
     @NotBlank
     private String userPw;
@@ -50,7 +49,6 @@ public class UserEntity extends BaseEntity{
     // 로그인 유무
     @Column(columnDefinition = "tinyint(1) default 0")
     private Boolean isLogin;
-
     
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<BoardEntity> boardList;
