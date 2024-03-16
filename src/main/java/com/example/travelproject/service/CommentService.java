@@ -14,8 +14,8 @@ public interface CommentService {
     void deleteComment(Long id);
 
     // ID로 댓글 조회
-    CommentDto findCommentById(Long id);
+    // CommentDto findCommentById(Long id);
 
-    // 모든 댓글 조회
-    List<CommentDto> findAllComments();
+    // 게시글 내 모든 댓글 조회
+    List<CommentDto> findAllComments(String userId,Long noticeId);
 }

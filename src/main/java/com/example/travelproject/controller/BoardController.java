@@ -1,5 +1,7 @@
 package com.example.travelproject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.travelproject.model.dto.BoardDto;
+import com.example.travelproject.model.dto.CommentDto;
 import com.example.travelproject.service.BoardService;
+import com.example.travelproject.service.CommentService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -25,6 +31,8 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    @Autowired
+    private CommentService commentService;
 
     //게시판 메인 페이지
     //권한 : 모두 접근 가능(authentication x)
@@ -72,17 +80,35 @@ public class BoardController {
     // 글 상세페이지 
     // 권한 : 모두 
     @GetMapping("/notice/{noticeId}")
+<<<<<<< HEAD
     public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model, Authentication authentication){
+=======
+    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model,HttpSession session){
+>>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
         log.info("[BoardController][viewNotice] start");
 
         boardService.updateViewCnt(noticeId); 
         BoardDto boardDto = boardService.findtByNoticeId(noticeId);
+        String userId = null;
+        if(session.getAttribute("userId")!=null){
+            userId = session.getAttribute("userId").toString();
+        }
+        
+        List<CommentDto> commentDtos = commentService.findAllComments(userId,noticeId);
+        for(CommentDto dto : commentDtos){
+            log.info(dto.toString());
+        }
         model.addAttribute("notice", boardDto);
+<<<<<<< HEAD
         if (authentication != null) {
             model.addAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 model.addAttribute("admin", authentication.getName());
             }
+=======
+        if(!commentDtos.isEmpty()){
+            model.addAttribute("commentDtos", commentDtos);
+>>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
         }
         return "board/noticeView";
     }
@@ -93,7 +119,6 @@ public class BoardController {
     @PostMapping("/notice/{noticeId}/edit")
     public String editNotice(@PathVariable("noticeId") Long noticeId, Authentication authentication, Model model){
         log.info("[BoardController][editNotice] start");
-        
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         BoardDto boardDto = boardService.findtByNoticeId(noticeId); 
         boardDto.setUserId(userDetails.getUsername());
@@ -102,17 +127,28 @@ public class BoardController {
         return "board/noticeForm"; 
     }
 
+    @PostMapping("/notice/{noticeId}/update")
+    public String updateNotice(@PathVariable("noticeId") Long noticeId,Authentication authentication
+                                ,@ModelAttribute BoardDto boardDto,RedirectAttributes redirectAttributes){
+        log.info("[BoardController][updateNotice] start");
+        log.info("noticeId:"+noticeId+"  boardDto : "+boardDto.toString());
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        boardDto.setUserId(userDetails.getUsername());
+        boardService.updateNotice(boardDto);
+        redirectAttributes.addAttribute("noticeId", noticeId);
+        return "redirect:/board/notice/{noticeId}";
+    }
+
 
     // 게시글 삭제 
-    @GetMapping("/notice/{noticeId}/delete")
+    @PostMapping("/notice/{noticeId}/delete")
     public String deleteNotice(@PathVariable("noticeId") Long noticeId, Authentication authentication, Model model){
         log.info("[BoardController][deleteNotice] start");
-
-        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         boardService.deleteNotice(noticeId); 
-        model.addAttribute("msg", "삭제 완료");
-        return "board/noticeMain"; //추후 시나리오 확인 후 수정
+        // model.addAttribute("msg", "삭제 완료");
+        return "redirect:/board"; 
     }
+
 
     // 게시글 검색
     // 권한 : 모두 접근 가능(authentication 없음)

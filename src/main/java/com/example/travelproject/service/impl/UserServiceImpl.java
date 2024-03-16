@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService{
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Override
 =======
 >>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
@@ -95,4 +96,15 @@ public class UserServiceImpl implements UserService{
         }
         return entity.getUserId();
     }
+=======
+    public UserDto findByUserId(String userId){
+        UserEntity userEntity = userDao.findByUserId(userId);
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userEntity.getUserId());
+        userDto.setUserNm(userEntity.getUserNm());
+        userDto.setRole(userEntity.getRole());
+        return userDto;
+    }
+
+>>>>>>> 527df70558bb3e15750bdef66ab5a9f4c64af536
 }

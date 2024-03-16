@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.travelproject.model.dao.CommentDao;
+import com.example.travelproject.model.entity.BoardEntity;
 import com.example.travelproject.model.entity.CommentEntity;
 import com.example.travelproject.model.repository.CommentRepository;
 
@@ -25,8 +26,8 @@ public class CommentDaoImpl implements CommentDao {
         return commentRepository.findById(id);
     }
 
-    public List<CommentEntity> findAllComments() {
-        return commentRepository.findAll();
+    public List<CommentEntity> findAllComments(BoardEntity notice) {
+        return commentRepository.findByNotice(notice);
     }
 
     public void deleteComment(Long id) {
