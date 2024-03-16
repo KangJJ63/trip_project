@@ -94,39 +94,48 @@
 		</div>
 	</div>        
 
-    <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
-        <div class="menu_close_container"><div class="menu_close"></div></div>
-        <h3>Find Id Page</h3>
+    <div class="contact_form_section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
 
-        <form action="/findId" method="get">
-            <label for="text">이름:</label>
-            <br>
-            <input type="text" id="name" name="userNm" placeholder="홍길동">
-            <br>
-            <label for="email">이메일:</label><br>
-            <input type="email" id="email" name="userEmail" placeholder="id@casimo.com">
-            <br>
-            <button type="submit" id="form_submit_button">아이디 찾기</button>
-                <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
-        </form>
-        
-        {{#userId}}
-        <div>
-            <p>아이디 : {{userId}}</p>
+                    <!-- form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">아이디 찾기</div>
+                        <form action="/findId" id="contact_form" class="contact_form text-center" method="get">
+                            <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="홍길동" required="required" data-error="이름을 입력하세요">
+                            <br>
+                            <input type="email" id="contact_form_email" class="contact_form_email input_field" placeholder="id@casimo.com" required="required" data-error="이메일을 입력하세요">
+                            <br>
+                            <button type="submit" id="form_submit_button" class="form_submit_button button trans_200">아이디 찾기<span></span><span></span><span></span></button>
+                                <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
+                        </form>
+                        
+                        {{#userId}}
+                        <div>
+                            <p>아이디 : {{userId}}</p>
+                        </div>
+                        {{/userId}}
+                
+                        {{#errorMessage}}
+                        <div>
+                            <p>{{errorMessage}}</p>
+                        </div>
+                        {{/errorMessage}}
+                
+                
+                        <div class="contact_info_item d-flex justify-content-around">
+                            <div class="contact_info_text"><a href="/loginPage" target="_top">로그인 화면 이동</a></div>
+                        </div>
+                        <div class="contact_info_item d-flex justify-content-around">
+                            <div class="contact_info_text"><a href="/findPw">비밀번호 찾기</a></div>	
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        {{/userId}}
 
-        {{#errorMessage}}
-        <div>
-            <p>{{errorMessage}}</p>
-        </div>
-        {{/errorMessage}}
-
-
-        <p class="join-btn-wrap">
-            <a href="/loginPage">로그인 화면 이동</a>
-            <a href="/findPw">비밀번호 찾기</a>
-        </p>
 
     </div>
 </div>

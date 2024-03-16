@@ -31,7 +31,7 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private UserDao userDao;
 
@@ -39,6 +39,7 @@ public class MainController {
      * 누구나 접근 가능
      */
     @GetMapping({ "/index", "/" })
+
     public String index(Authentication authentication, Model model) {
         if (authentication == null || userRepository.getUserDtoById(authentication.getName()) == null) {
             return "index";
@@ -115,10 +116,11 @@ public class MainController {
             }
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
+
     }
-    
+
     // Email 중복확인 by 성민
-    @PostMapping("/ConfirmEmail") 
+    @PostMapping("/ConfirmEmail")
     @ResponseBody
     public ResponseEntity<Boolean> confirmEmail(String email) {
         log.info("[MainController][confirmEmail] Start: " + email);
@@ -135,12 +137,12 @@ public class MainController {
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    
 
     /*
      * 로그인한 경우만
      */
     @GetMapping("/user/index")
+
     public String user(Authentication authentication, Model model) {
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -193,15 +195,22 @@ public class MainController {
 
     // 아이디찾기 페이지 이동
     @GetMapping("/findIdPage")
-    public String findIdPage() {
-
+    public String findIdPage(@RequestParam(value = "erroMessage", required = false) String errorMessage, Model model) {
+        model.addAttribute("errorMessage", errorMessage);
         return "login/findIdPage";
     }
 
-    // @PostMapping("/findId")
-    // public String findUserId(@ModelAttribute UserEntity dto) {
-    // userService.
-    // return "redirect:/loginpage";
-    // }
-//
+    @GetMapping("/findId")
+    public String findUserId(String userNm, String userEmail, Model model) {
+        log.info("[MainController][findUserId] " + userNm + userEmail);
+        UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
+        if (entity != null) {
+            model.addAttribute("userId", entity.getUserId());
+            return "login/userIdPage";
+        } else {
+            model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");
+            return "login/findIdPage";
+        }
+    }
+
 }

@@ -12,10 +12,8 @@ public interface UserDao {
 
     public void updateUser(UserEntity entity);
 
-    public UserEntity findId(String userNm, String userEmail);
+    public UserEntity findByUserEmail(String userNm, String userEmail);
 
-    // // public UserEntity findId(String userNm, String userEmail) {
-    // return userRepository.getUserDtoByEmail("userNm", "userEmail");
-    // }
+    public UserEntity findByUserEmail(String userEmail);
 
 }
