@@ -14,7 +14,6 @@ public interface UserService {
 
     public void updateUserDto(UserEntity dto);
 
-    public String findUserId(UserEntity dto);
+    public String findUserIdByEmail(String userNm, String userEmail);
 
-    public UserDto findByUserId(String userId);
 }

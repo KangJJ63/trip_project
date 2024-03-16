@@ -15,39 +15,39 @@ import com.example.travelproject.model.repository.BoardRepository;
 public class BoardDaoImpl implements BoardDao{
 
     @Autowired
-    private BoardRepository boardRepository; 
+    private BoardRepository boardRepository;
 
     // 글 작성 : insert
-    public void saveNotice(BoardEntity entity){
+    public void saveNotice(BoardEntity entity) {
         boardRepository.save(entity);
     }
 
     // 글 수정 : update
-    public void updateNotice(BoardEntity entity){
+    public void updateNotice(BoardEntity entity) {
         boardRepository.save(entity);
     }
 
     // 글 삭제 : delete
-    public void deleteNotice(Long noticeId){
+    public void deleteNotice(long noticeId) {
         boardRepository.deleteById(noticeId);
     }
 
-    // 게시글 선택 : find
-    public  BoardEntity findByNoticeId(Long noticeId){
+    // 게시글 선택 : select
+    public BoardEntity findByNoticeId(long noticeId) {
         return boardRepository.findByNoticeId(noticeId);
     }
 
-    // 게시글 목록 
-    public List<BoardEntity> findNoticeList(){
+    // 게시글 목록 : show
+    public List<BoardEntity> findNoticeList() {
         return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
     }
 
     // 게시글 검색
-    public List<BoardEntity> findByTitleContaining(String keyword){
+    public List<BoardEntity> findByTitleContaining(String keyword) {
         return boardRepository.findByTitleContaining(keyword);
-    }    
+    }
 
-    // 게시글 조회수 업데이트 
+    // 게시글 조회수 업데이트
     public void updateViewCnt(Long noticeId) {
         boardRepository.updateViewCnt(noticeId);
     }

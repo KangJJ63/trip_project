@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
     
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    
+
     @Autowired
     private UserRepository userRepository;
 
@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService{
     }
 
     public void joinUserDto(UserEntity dto) {
-        
-        // 권한 적용 
+
+        // 권한 적용
         dto.setRole("USER");
-        if(dto.getUserId().equals("admin")) {
+        if (dto.getUserId().equals("admin")) {
             dto.setRole("ADMIN");
-        } else if(dto.getUserId().equals("manager")) {
+        } else if (dto.getUserId().equals("manager")) {
             dto.setRole("MANAGER");
         }
 
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService{
     public void updateUserDto(UserEntity dto) {
         UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
         log.info("[UserService][entity]: " + entity);
-        
+
         if (dto.getUserNm() != null) {
             entity.setUserNm(dto.getUserNm());
         }
@@ -76,22 +76,24 @@ public class UserServiceImpl implements UserService{
         userRepository.save(entity);
     }
 
-    public void updatePw(UserDto dto){
+    public void updatePw(UserDto dto) {
         UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
         log.info("[UserService][updatePw] Start");
-        if(dto.getUserNm()!= null){
+        if (dto.getUserNm() != null) {
             entity.setUserNm(dto.getUserNm());
         }
     }
 
     @Override
-    public String findUserId(UserEntity dto)  {
-        UserEntity entity = userDao.findId("userNm", "userEmail");
-        // 이메일 검색 실패
-        if (entity == null) {
-            return null;
+    public String findUserIdByEmail(String userNm, String userEmail) {
+        // TODO Auto-generated method stub
+        UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
+        log.info("[UserService][findUserIdByEamil] Start");
+        if (entity != null) {
+            return entity.getUserId();
+        } else {
+            return null; // 이메일에 해당하는 사용자를 찾을 수 없는 경우
         }
-        return entity.getUserId();
     }
 
     public UserDto findByUserId(String userId){

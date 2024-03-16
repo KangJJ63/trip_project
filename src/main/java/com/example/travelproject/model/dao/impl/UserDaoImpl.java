@@ -33,9 +33,8 @@ public class UserDaoImpl implements UserDao{
         userRepository.save(entity);
     }
 
-    @Override
-    public UserEntity findId(String userNm, String userEmail) {
-        return userRepository.getUserDtoByEmail("userNm", "userEmail");
+    public UserEntity findByUserEmail(String userNm, String userEmail) {
+        return userRepository.getUserIdByEmail(userNm, userEmail);
     }
 
     // [이메일 중복 조회] by 성민
@@ -44,5 +43,5 @@ public class UserDaoImpl implements UserDao{
         log.info("[UserDaoImpl][findByUserEmail] >>> " + userRepository.findByUserEmail(userEmail));
         return userRepository.findByUserEmail(userEmail);
     }
-    
+
 }
