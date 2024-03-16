@@ -48,7 +48,7 @@ public class MypageController {
     @PostMapping("/update")
     public String update(@ModelAttribute UserEntity dto) {
         log.info("[dto]: " + dto);
-        log.info("[repository]: " + userRepository.getUserDtoById(dto.getUserId()));
+        // log.info("[repository]: " + userRepository.getUserDtoById(dto.getUserId()));
         UserEntity update_dto = userRepository.getUserDtoById(dto.getUserId());
         update_dto.setUserEmail(dto.getUserEmail());
         log.info("[update]: " + update_dto);
@@ -64,7 +64,7 @@ public class MypageController {
         }
         log.info("[signout]: " + authentication);
         userService.deleteUser(authentication.getName());
-        session.removeAttribute("username");
+        session.setAttribute("username",null);
         authentication.setAuthenticated(false);
         return "redirect:/index";
     }

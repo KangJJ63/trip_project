@@ -31,7 +31,7 @@ public class CommentEntity extends BaseEntity{
     
     @ManyToOne
     @JoinColumn(name = "notice_id")
-    private BoardEntity notice; // 게시판 엔티티에 대한 참조
+    private BoardEntity board; // 게시판 엔티티에 대한 참조
 
     @ManyToOne
     @JoinColumn(name = "user_id")

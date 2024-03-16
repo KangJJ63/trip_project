@@ -7,10 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.travelproject.model.entity.UserEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.transaction.Transactional;
 
 
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {
+    @JsonIgnoreProperties
+    @Transactional
     @Query(value = "select * from user where user_id = :user_id", nativeQuery = true)
     public UserEntity getUserDtoById(@Param(value = "user_id") String userId);
 
@@ -25,7 +30,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     @Query(value = "select * from user", nativeQuery = true)
     public List<UserEntity> findAllUser();
 
-    
     @Query(value = "select * from user where user_id = :user_id", nativeQuery = true)
     public UserEntity findOneUser(@Param(value = "user_id") String user_id);
 

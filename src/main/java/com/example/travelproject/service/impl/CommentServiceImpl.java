@@ -33,10 +33,10 @@ public class CommentServiceImpl implements CommentService {
     public void saveComment(CommentDto dto) {
         CommentEntity comment = new CommentEntity();
         // 필요한 필드 설정, 예를 들면:
-        comment.setNotice(boardDao.findByNoticeId(dto.getNoticeId()));
+        comment.setBoard(boardDao.findByNoticeId(dto.getNoticeId()));
         comment.setUser(userDao.findByUserId(dto.getUserId()));
         comment.setContents(dto.getContents());
-        comment.setNotice(boardDao.findByNoticeId(dto.getNoticeId()));
+        comment.setBoard(boardDao.findByNoticeId(dto.getNoticeId()));
         commentDao.saveComment(comment);
     }
 
@@ -89,7 +89,7 @@ public class CommentServiceImpl implements CommentService {
             CommentDto commentDto = new CommentDto();
             commentDto.setCommentId(commentEntity.getCommentId());
             commentDto.setUserId(commentEntity.getUser().getUserId());
-            commentDto.setNoticeId(commentEntity.getNotice().getNoticeId());
+            commentDto.setNoticeId(commentEntity.getBoard().getNoticeId());
             commentDto.setContents(commentEntity.getContents());
             commentDto.setCreateDate(localtimeToString(commentEntity.getCreateDate()));
             if(userId != null && userId.equals(commentEntity.getUser().getUserId())){

@@ -18,7 +18,6 @@ public class PlanController {
     public String mainPlan(Authentication authentication, Model model, HttpSession session){
         log.info("[PlanController][mainPlan]: Start");
         if (authentication != null) {
-            session.setAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 session.setAttribute("admin", authentication.getName());
             }

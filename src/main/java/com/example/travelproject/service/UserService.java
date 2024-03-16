@@ -5,7 +5,7 @@ import com.example.travelproject.model.entity.UserEntity;
 
 public interface UserService {
 
-    public UserDto findByUserId(String userId);
+    // public UserDto findByUserId(String userId);
 
     public void deleteUser(String userId);
 
