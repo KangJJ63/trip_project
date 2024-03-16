@@ -39,8 +39,10 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
     }else{
       HttpSession session = request.getSession();
       UserDto dto = userService.findByUserId(userDetails.getUsername());
+
       session.setAttribute("userId",dto.getUserId());
       session.setAttribute("role", dto.getRole());
+      
       log.info("Authorities : "+userDetails.getAuthorities());
       if (userDetails.getUsername().equals("admin")) {
       response.sendRedirect("/admin/index");

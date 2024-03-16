@@ -38,7 +38,7 @@ public class MypageController {
         }
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        model.addAttribute("userId", userDetails.getUsername());
+        // model.addAttribute("userId", userDetails.getUsername());
         model.addAttribute("userPw", userRepository.getUserDtoById(userDetails.getUsername()).getUserPw());
         model.addAttribute("userEmail", userRepository.getUserDtoById(userDetails.getUsername()).getUserEmail());
 		return "staff/mypage";

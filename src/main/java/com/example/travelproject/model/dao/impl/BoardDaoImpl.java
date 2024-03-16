@@ -10,6 +10,9 @@ import com.example.travelproject.model.dao.BoardDao;
 import com.example.travelproject.model.entity.BoardEntity;
 import com.example.travelproject.model.repository.BoardRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @SuppressWarnings("null")
 public class BoardDaoImpl implements BoardDao{
@@ -28,13 +31,13 @@ public class BoardDaoImpl implements BoardDao{
     }
 
     // 글 삭제 : delete
-    public void deleteNotice(long noticeId) {
+    public void deleteNotice(Long noticeId) {
         boardRepository.deleteById(noticeId);
     }
 
     // 게시글 선택 : select
-    public BoardEntity findByNoticeId(long noticeId) {
-        return boardRepository.findByNoticeId(noticeId);
+    public BoardEntity findByNoticeId(Long noticeId) {
+        return boardRepository.selectByNotice(noticeId);
     }
 
     // 게시글 목록 : show
@@ -49,7 +52,9 @@ public class BoardDaoImpl implements BoardDao{
 
     // 게시글 조회수 업데이트
     public void updateViewCnt(Long noticeId) {
+        log.info("[BoardDaoImpl][updateViewCnt] Start");
         boardRepository.updateViewCnt(noticeId);
+        log.info("[BoardDaoImpl][updateViewCnt] End");
     }
 
 }

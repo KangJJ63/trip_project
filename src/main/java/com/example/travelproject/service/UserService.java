@@ -16,4 +16,6 @@ public interface UserService {
 
     public String findUserIdByEmail(String userNm, String userEmail);
 
+    public UserDto findByUserId(String username);
+
 }

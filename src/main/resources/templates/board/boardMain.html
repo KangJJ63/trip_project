@@ -1,9 +1,5 @@
 {{>common/header}}
 <title>게 시 판</title>
-<<<<<<< HEAD
-<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
-=======
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 </head>
 <style>
 	
@@ -22,23 +18,12 @@
 	}
 	.notice_head{
 		font-size: 24px;
-<<<<<<< HEAD
-		color: #929191;
-=======
 		background-color: #350a4e ;
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 		line-height: 1.336;
 		margin-bottom: 0px;
 		align-items: center;
 		border-bottom: 1px solid;
 	}
-<<<<<<< HEAD
-	.notice_btn a{
-		position: relative;
-		display: block;
-		font-size: 13px;
-		font-weight: 700;
-=======
 
 	.notice_head p{
 		margin-top:10px;
@@ -52,7 +37,6 @@
 		font-size: 13px;
 		font-weight: 700;
 		background-color: #350a4e;
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 		color: #fff;
 		text-transform: uppercase;
 		line-height: 40px;
@@ -66,14 +50,10 @@
 		color : black;
 	}
 	.notice_btn a:hover{
-<<<<<<< HEAD
-		color: #a131e1;
-=======
 		background-color: #fa9e1b;
 	}
 	.board_row{
 		padding-top:2%;
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 	}
 </style>
 <body>
@@ -84,74 +64,6 @@
 			<div class="row">
 				<div class="col">
 					<h2 class="notice_title text-center">공지사항</h2>
-<<<<<<< HEAD
-				</div>
-			</div>
-			<div class="row notice_head">
-				<div class="col-1 align-items-center">
-					<p>번호</p>
-				</div>
-				<div class="col-5 align-items-center">
-					<p>제목</p>
-				</div>
-				<div class="col-2 align-items-center">
-					<p>작성자</p>
-				</div>	
-				<div class="col-3 align-items-center">
-					<p>작성 일자</p>
-				</div>	
-				<div class="col-1 align-items-center">
-					<p>조회수</p>
-				</div>
-			</div>
-			{{#boardList}}
-			<div class="row my-0">
-				<div class="col-1 d-flex py-0">
-					<p>{{noticeId}}</p>
-				</div>
-				<div class="col-5 d-flex py-0">
-					<a href="/board/notice/{{noticeId}}"><p>{{title}}</p></a>
-				</div>
-				<div class="col-2 d-flex py-0">
-					<p>{{userId}}</p>
-				</div>	
-				<div class="col-3 d-flex py-0">
-					<p>{{createDate}}</p>
-				</div>
-				<div class="col-1 d-flex py-0">
-					<p class="text-end">{{viewCnt}}</p>
-				</div>	
-			</div>
-			<hr>
-			{{/boardList}}
-			<div class="notice_btn">
-				<a class="btn btn-light my-1 px-1 py-0" role="button" href="/board/notice" style="font-size:15px;" >
-					새글 등록
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
-</body>
-
-<div class="home">
-		
-	<!-- Home Slider -->
-
-	<div class="home_slider_container">
-		
-		<div class="owl-carousel home_slider">
-			<!-- Slider Item -->
-			<div class="home_slider_item">
-				<!-- Image by https://unsplash.com/@anikindimitry -->
-				<div class="home_slider_background" style="background-image:url(/static/img/home_slider.jpg)"></div>
-
-				<div class="home_slider_content text-center">
-					<div class="home_slider_content_inner">
-						<h1>글</h1>
-					</div>
-=======
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 				</div>
 			</div>
 			<div class="row notice_head">
@@ -200,19 +112,9 @@
 			{{/userId}}
 		</div>
 	</div>
-<<<<<<< HEAD
-	<div id="rightHeader">
-		<input type="button" value=" 글올리기 " class="btn2" 
-		onclick="javascript:location.href='<%=cp%>/board/created.jsp';"/>			
-	</div>	 -->
-
-
-<script src="/static/js/bootstrap.min.js"></script>
-=======
 </div>
 </body>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
->>>>>>> 5dc288253579a96b3c79ddab6da27c8bac9e9287
 {{>common/footer}}	

@@ -86,7 +86,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String findUserIdByEmail(String userNm, String userEmail) {
-        // TODO Auto-generated method stub
         UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
         log.info("[UserService][findUserIdByEamil] Start");
         if (entity != null) {
