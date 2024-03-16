@@ -26,12 +26,16 @@ public class LogoutAuthSuccesshandler implements LogoutSuccessHandler {
   @Override
   public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
       throws IOException, ServletException {
-    UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-    userService.updateIsLoginById(userDetails.getUsername(), false);
-    HttpSession session = request.getSession();
-    session.removeAttribute("userId");
-    session.removeAttribute("role");
-    response.sendRedirect("/index");
-  }
+        if (authentication == null) {
+          response.sendRedirect("/index");
+        } else {
+          UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+          userService.updateIsLoginById(userDetails.getUsername(), false);
+          HttpSession session = request.getSession();
+          session.removeAttribute("userId");
+          session.removeAttribute("role");
+          response.sendRedirect("/index");
+        }
+        }
   
 }

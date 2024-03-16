@@ -22,8 +22,8 @@ public class AuthUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         log.info("[AuthUserService][loadUserByUsername] Start");
         UserEntity userDto = userRepository.getUserDtoById(name);
+        log.info("[AuthUserService][loadUserByUsername] End");
         // username의 데이터가 database에 존재함(가입함)!!
-        log.info("[UserRepository][getUserDtoById]: " + userDto);
         if(userDto != null) {
             return new AuthUserDto(userDto);
         }

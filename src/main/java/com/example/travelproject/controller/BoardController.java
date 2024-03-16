@@ -37,13 +37,14 @@ public class BoardController {
     //게시판 메인 페이지
     //권한 : 모두 접근 가능(authentication x)
     @GetMapping({"","/"})
-    public String mainBoard(Authentication authentication, Model model){
+    public String mainBoard(Authentication authentication, Model model, HttpSession session){
         model.addAttribute("boardList", boardService.findNoticeList());
-
+        
         if (authentication != null) {
-            model.addAttribute("username", authentication.getName());
+            session.setAttribute("username", authentication.getName());
+            // model.addAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
-                model.addAttribute("admin", authentication.getName());
+                session.setAttribute("admin", authentication.getName());
             }
         }
         return "board/boardMain";
@@ -53,11 +54,11 @@ public class BoardController {
     //게시글 작성
     //권한 : 관리자만(authentication)
     @GetMapping("/notice")
-    public String newNoticeForm(Authentication authentication, Model model){
+    public String newNoticeForm(Authentication authentication, Model model, HttpSession session){
         if (authentication != null) {
-            model.addAttribute("username", authentication.getName());
+            session.setAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
-                model.addAttribute("admin", authentication.getName());
+                session.setAttribute("admin", authentication.getName());
             }
         }
         return "board/noticeForm";
@@ -80,12 +81,22 @@ public class BoardController {
     // 글 상세페이지 
     // 권한 : 모두 
     @GetMapping("/notice/{noticeId}")
-    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model,HttpSession session){
+    public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model,HttpSession session, Authentication authentication){
         log.info("[BoardController][viewNotice] start");
+        if (authentication == null) {
+            return "redirect:/board";
+        }
 
-        boardService.updateViewCnt(noticeId); 
+        boardService.updateViewCnt(noticeId);
+
         BoardDto boardDto = boardService.findtByNoticeId(noticeId);
         String userId = null;
+
+        session.setAttribute("username", authentication.getName());
+        if (authentication.getName().equals("admin")) {
+            session.setAttribute("admin", authentication.getName());
+        }
+        
         if(session.getAttribute("userId")!=null){
             userId = session.getAttribute("userId").toString();
         }

@@ -60,8 +60,9 @@ public class UserServiceImpl implements UserService{
     }
 
     public void updateUserDto(UserEntity dto) {
-        UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
-        log.info("[UserService][entity]: " + entity);
+        // UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
+        UserEntity entity = userRepository.findOneUser(dto.getUserId());
+        log.info("[UserServiceImpl][updatePw] Start: entity >>> " + entity);
 
         if (dto.getUserNm() != null) {
             entity.setUserNm(dto.getUserNm());
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService{
 
     public void updatePw(UserDto dto) {
         UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
-        log.info("[UserService][updatePw] Start");
+        log.info("[UserServiceImpl][updatePw] Start: entity >>> " + entity);
         if (dto.getUserNm() != null) {
             entity.setUserNm(dto.getUserNm());
         }
