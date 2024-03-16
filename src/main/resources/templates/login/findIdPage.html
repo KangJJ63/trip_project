@@ -8,9 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
 <link href="/static/plugins/font-awesome-6.5.1/css/all.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/static/css/main_styles.css">
-<link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
-<link rel="stylesheet" type="text/css" href="/static/css/inputstyle.css">
+<link rel="stylesheet" type="text/css" href="/static/css/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="/static/css/contact_responsive.css">
 </head>
 <body>
 
@@ -20,34 +19,44 @@
 
     <header class="header">
 
-        <!-- Top Bar -->
+		<!-- Top Bar -->
 
-        <div class="top_bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="user_box ml-auto my-auto">
-                            <div class="user_box_link">
-                                {{#username}}
-                                <a class="user_info btn btn-link p-1" role="button" href="#">
-                                    <i class="fas fa-circle-user"></i>
-                                    <span>{{username}}님 반갑습니다.</span>
-                                </a>
-                                {{/username}}
-                                {{^userId}}
-                                <a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:13px;" >
-                                    로그아웃
-                                </a>
-                                <a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/mypage" style="font-size:13px;" >
-                                    마이페이지
-                                </a>
-                                {{/userId}}
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </div>		
-        </div>
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="user_box ml-auto my-auto">
+							<div class="user_box_link">
+								{{#username}}
+								<a class="user_info btn btn-link p-1" role="button" href="#">
+									<i class="fas fa-circle-user"></i>
+									<span>{{username}}님 반갑습니다.</span>
+									<a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:15px;" >
+										로그아웃
+									</a>
+									<a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/mypage" style="font-size:15px;" >
+										마이페이지
+									</a>	
+									{{#admin}}
+										<a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/admin/setting" style="font-size:15px;" >
+											관리자 페이지
+										</a>	
+									</a>
+									{{/admin}}
+								</a>
+								{{/username}}
+								{{^username}}
+								<a class="user_join btn btn-light my-1 px-1 py-0" role="button" href="/loginPage" style="font-size:15px;" >
+									로그인 / 회원가입
+								</a>
+								{{/username}}
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
 
         <!-- Main Navigation -->
 
@@ -75,66 +84,48 @@
                 </div>
             </div>	
         </nav>
-
     </header>
+
+
     <div class="home">
-        
-        <!-- Home Slider -->
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/contact_background.jpg"></div>
+		<div class="home_content">
+			<div class="home_title">아이디 찾기</div>
+		</div>
+	</div>        
 
-        <div class="home_slider_container">
-            
-            <div class="owl-carousel home_slider">
-                <!-- Slider Item -->
-                <div class="home_slider_item">
-                    <!-- Image by https://unsplash.com/@anikindimitry -->
-                    <div class="home_slider_background" style="background-image:url(/static/img/home_slider.jpg)"></div>
+    <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+        <div class="menu_close_container"><div class="menu_close"></div></div>
+        <h3>Find Id Page</h3>
 
-                    <div class="home_slider_content text-center">
-                        <div class="home_slider_content_inner">
-                            <h3 class="main_nav_item_select">아이디 찾기</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{>common/sidebar}}
-    </div>
-</div>
-
-
-    <div class="input_form_container">
-        <div class="input_title text-center">아이디 찾기</div>
-        
-
-        <form name="findIdForm" action="/findId" method="post">
-            <input type="text" id="username" name="username" placeholder="홍길동">
+        <form action="/findId" method="get">
+            <label for="text">이름:</label>
             <br>
-            <input type="email" id="email" name="email" placeholder="id@casimo.com">
+            <input type="text" id="name" name="userNm" placeholder="홍길동">
             <br>
-            <input type="submit" value="아이디 찾기">
-            <button type="submit" id="form_submit_button" onclick="findIdCheck()">아이디 찾기(임시)</button>
+            <label for="email">이메일:</label><br>
+            <input type="email" id="email" name="userEmail" placeholder="id@casimo.com">
+            <br>
+            <button type="submit" id="form_submit_button">아이디 찾기</button>
                 <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
         </form>
-        <script>
-            //입력이 틀릴경우
-            function findIdCheck() {
-                let findIdForm = document.findIdForm
-                let username = document.getElementsByName('username').value;
-                let email = document.getElementById("email").value;
+        
+        {{#userId}}
+        <div>
+            <p>아이디 : {{userId}}</p>
+        </div>
+        {{/userId}}
 
-                if (username == "") {
-                    alert("이름을 입력해주세요.");
-                } else if(email == "") {
-                    alert("이메일을 입력해주세요.")
-                } else {
-                    findIdForm.submit();
-                }
-                
-            }
-        </script>
+        {{#errorMessage}}
+        <div>
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/errorMessage}}
+
+
         <p class="join-btn-wrap">
             <a href="/loginPage">로그인 화면 이동</a>
-            <a href="#">비밀번호 찾기</a>
+            <a href="/findPw">비밀번호 찾기</a>
         </p>
 
     </div>
