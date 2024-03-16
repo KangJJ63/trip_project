@@ -104,15 +104,23 @@ public class BoardController {
 
     // 게시글 수정
     // 권한 : 관리자만(authentication)
-    @PostMapping("/notice/{noticeId}/edit")
-    public String editNotice(@PathVariable("noticeId") Long noticeId, Authentication authentication, Model model){
+    @GetMapping("/notice/{noticeId}/edit")
+    public String editNotice(@PathVariable("noticeId") Long noticeId, Authentication authentication, Model model){ 
+        boardService.updateViewCnt(noticeId); 
+        BoardDto boardDto = boardService.findtByNoticeId(noticeId);
+        model.addAttribute("notice", boardDto);
+        return "board/noticeForm";
+    }
+
+
+    @PostMapping("/notice/{noticeId}/edit.do")
+    public String upateNotice(@PathVariable("noticeId") Long noticeId, Authentication authentication, Model model,@ModelAttribute BoardDto dto){
         log.info("[BoardController][editNotice] start");
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-        BoardDto boardDto = boardService.findtByNoticeId(noticeId); 
-        boardDto.setUserId(userDetails.getUsername());
-        model.addAttribute("notice", boardDto);
-
-        return "board/noticeForm"; 
+        dto.setUserId(userDetails.getUsername());
+        boardService.updateNotice(dto); 
+        // model.addAttribute("notice", dto);
+        return "redirect:/board"; 
     }
 
     @PostMapping("/notice/{noticeId}/update")

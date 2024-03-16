@@ -188,12 +188,12 @@
 <div class="noticeView pb-4">
 	<div class="container">
 		<div class="notice_panel">
+		{{#notice}}
             <div class="row notice_title_row">
 				<div class="col py-0">
 					<h2 class="notice_title my-0 py-0">{{notice.title}}</h2>
 				</div>
 			</div>
-
             <div class="row notice_sub_row">
                 <div class="col-md-7 col-sm-12 align-bottom">
                     작성자 : {{notice.userId}}
@@ -213,22 +213,14 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-end notice_btn">
-				<form id="noticeTask" class = "btn my-1 px-1 py-0" action = "/board/notice/{{notice.noticeId}}/edit" method = "post">
-					<div class="d-flex flex-row justify-content-end">
-						<a class="btn notice_list_btn my-1 px-1 py-0 mr-2" role="button" href="/board" style="font-size:15px;">목록</a>
-						{{#userId}}
-								<button class="btn notice_save_btn my-1 px-1 py-0 mr-2" style="font-size:15px;" type="submit">수정</button>
-								<button class="btn notice_del_btn my-1 px-1 py-0" style="font-size:15px;" onclick="confirmDelete()" type="button">삭제</button>
-						{{/userId}}
-					</div>
+					<form class = "btn my-1 px-1 py-0" action = "/board/notice/{{notice.noticeId}}/edit" method = "get " vlaue = {{notice.noticeId}}>
                     <!-- <a class="btn my-1 px-1 py-0" role="button" href="/notice/{{notice.noticeId}}/edit" style="font-size:15px;" > -->
-					
-				</form>
-                    </a>
+					<button class="btn notice_save_btn my-1 px-1 py-0" style="font-size:15px;" type="submit">수정</button></form>
+                    <!-- </a> -->
                 </div>
             </div>
-			
 		</div>
+		{{/notice}}
 	</div>
 
 	<hr>
