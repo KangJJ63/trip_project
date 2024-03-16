@@ -11,6 +11,6 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
 
     // 사용자 ID에 따른 댓글 검색 메소드 추가
     List<CommentEntity> findByUserUserId(String userId);
-    List<CommentEntity> findByNotice(BoardEntity notice);
+    List<CommentEntity> findByBoard(BoardEntity board);
 }
 

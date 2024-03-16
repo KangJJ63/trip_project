@@ -42,6 +42,7 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
       session.setAttribute("userId",dto.getUserId());
       session.setAttribute("role", dto.getRole());
+      session.setAttribute("username", dto.getUserNm());
       
       log.info("Authorities : "+userDetails.getAuthorities());
       if (userDetails.getUsername().equals("admin")) {

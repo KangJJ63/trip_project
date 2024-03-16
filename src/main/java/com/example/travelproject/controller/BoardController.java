@@ -41,7 +41,6 @@ public class BoardController {
         model.addAttribute("boardList", boardService.findNoticeList());
         
         if (authentication != null) {
-            session.setAttribute("username", authentication.getName());
             // model.addAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 session.setAttribute("admin", authentication.getName());

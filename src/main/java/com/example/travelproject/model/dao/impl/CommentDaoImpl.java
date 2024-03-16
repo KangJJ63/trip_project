@@ -28,7 +28,7 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     public List<CommentEntity> findAllComments(BoardEntity notice) {
-        return commentRepository.findByNotice(notice);
+        return commentRepository.findByBoard(notice);
     }
 
     public void deleteComment(Long id) {

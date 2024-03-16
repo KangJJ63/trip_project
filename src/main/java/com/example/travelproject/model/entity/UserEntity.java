@@ -3,10 +3,14 @@ package com.example.travelproject.model.entity;
 import java.util.List;
 
 import com.example.travelproject.config.base.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -49,7 +53,8 @@ public class UserEntity extends BaseEntity{
     // 로그인 유무
     @Column(columnDefinition = "tinyint(1) default 0")
     private Boolean isLogin;
-    
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+    @JsonIgnoreProperties
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardEntity> boardList;
 }
