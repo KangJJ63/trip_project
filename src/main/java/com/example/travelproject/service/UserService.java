@@ -5,6 +5,8 @@ import com.example.travelproject.model.entity.UserEntity;
 
 public interface UserService {
 
+    public UserDto findByUserId(String userId);
+
     public void deleteUser(String userId);
 
     // 로그인 성공시 >> 로그인 유무 저장

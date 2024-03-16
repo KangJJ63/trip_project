@@ -45,6 +45,15 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
       session.setAttribute("username", dto.getUserNm());
       
       log.info("Authorities : "+userDetails.getAuthorities());
+    } else {
+      HttpSession session = request.getSession();
+      UserDto dto = userService.findByUserId(userDetails.getUsername());
+
+      session.setAttribute("loginUserId", dto.getUserId());
+      session.setAttribute("role", dto.getRole());
+
+      log.info("[Authorities] >>> " + userDetails.getAuthorities());
+      
       if (userDetails.getUsername().equals("admin")) {
       response.sendRedirect("/admin/index");
       } else {
@@ -53,5 +62,4 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
     super.onAuthenticationSuccess(request, response, authentication);
     }
   }
-
 }
