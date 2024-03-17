@@ -66,32 +66,11 @@
  ┃ ┣ 📂static
  ┃ ┣ 📂templates
  ┃ ┃ ┣ 📂board
- ┃ ┃ ┃ ┣ 📂css
- ┃ ┃ ┃ ┣ 📂js
- ┃ ┃ ┃ ┣ 📜boardMain.html
- ┃ ┃ ┃ ┣ 📜noticeForm.html
- ┃ ┃ ┃ ┗ 📜noticeView.html
  ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┣ 📜footer.html
- ┃ ┃ ┃ ┣ 📜header.html
- ┃ ┃ ┃ ┗ 📜sidebar.html
  ┃ ┃ ┣ 📂lodge
- ┃ ┃ ┃ ┗ 📜lodgeMain.html
  ┃ ┃ ┣ 📂login
- ┃ ┃ ┃ ┣ 📜findIdPage.html
- ┃ ┃ ┃ ┣ 📜findPw.html
- ┃ ┃ ┃ ┣ 📜joinPage.html
- ┃ ┃ ┃ ┣ 📜loginPage.html
- ┃ ┃ ┃ ┗ 📜userIdPage.html
  ┃ ┃ ┣ 📂plan
- ┃ ┃ ┃ ┗ 📜planMain.html
  ┃ ┃ ┣ 📂staff
- ┃ ┃ ┃ ┣ 📜admin1.html
- ┃ ┃ ┃ ┣ 📜manager1.html
- ┃ ┃ ┃ ┣ 📜mypage.html
- ┃ ┃ ┃ ┣ 📜secured.html
- ┃ ┃ ┃ ┣ 📜securedRoles.html
- ┃ ┃ ┃ ┗ 📜user.html
  ┃ ┃ ┣ 📂temp
  ┃ ┃ ┗ 📜index.html
  ┃ ┣ 📜application.yml
