@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Camino - Login</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-<<link href="/static/plugins/font-awesome-6.5.1/css/all.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/static/css/main_styles.css">
-<link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
-</head><script src="http://code.jquery.com/jquery-latest.js"></script>
+{{>common/header}}
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
 	/* The Modal (background) */
 	.modal {
@@ -37,64 +27,6 @@
 </style>
 
 <body>
-
-<div class="super_container">
-    
-    <!-- Header -->
-
-    <header class="header">
-
-        <!-- Main Navigation -->
-
-        <nav class="main_nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-                        <div class="logo_container">
-                            <div class="logo"><a href="/"><img src="/static/img/logo.png" alt="">CAMINO</a></div>
-                        </div>
-                        <div class="main_nav_container ml-auto">
-                            <ul class="main_nav_list">
-                                <li class="main_nav_item"><a href="/">홈</a></li>
-                                <li class="main_nav_item"><a href="/lodge">숙박</a></li>
-                                <li class="main_nav_item"><a href="/plan">일정</a></li>
-                                <li class="main_nav_item"><a href="/board">게시판</a></li>
-                                <!-- <li class="main_nav_item"><a href="contact.html">탑 메뉴</a></li> -->
-                            </ul>
-                        </div>
-
-                        <div class="hamburger ml-lg-0 ml-auto">
-                            <i class="fa fa-bars trans_200"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>	
-        </nav>
-
-    </header>
-    <div class="home">
-        
-        <!-- Home Slider -->
-
-        <div class="home_slider_container">
-            
-            <div class="owl-carousel home_slider">
-                <!-- Slider Item -->
-                <div class="home_slider_item">
-                    <!-- Image by https://unsplash.com/@anikindimitry -->
-                    <div class="home_slider_background" style="background-image:url(/static/img/home_slider.jpg)"></div>
-
-                    <div class="home_slider_content text-center">
-                        <div class="home_slider_content_inner">
-                            <h3 class="main_nav_item_select">로그인</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{>common/sidebar}}
-    </div>
-</div>
 
     <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
         <div class="menu_close_container"><div class="menu_close"></div></div>
@@ -123,11 +55,14 @@
                 }
             }
         </script>
-        <a href="/joinPage">신규 가입</a>
-        <a href="/findIdPage">아이디 찾기</a>
-
-        <a>
-            <button class="btn" onclick="open_pop();">비밀번호 찾기</button>
+        <a href="/joinPage">
+            <input type="submit" value="신규 가입">
+        </a>
+        <a href="/findIdPage">
+            <input type="submit" value="아이디 찾기">
+        </a>
+        <a onclick="open_pop();">
+            <input type="submit" value="비밀번호 찾기">
         </a>
 
         <div id="myModal" class="modal">
@@ -140,9 +75,9 @@
                         <br>
                         <input type="submit" value="조회하기">
                     </form>
-                                <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
-                    <span class="pop_bt" style="font-size: 13pt;">닫기</span>
-                </div>
+                    <a onclick="close_pop();">
+                        <input type="submit" value="닫기">
+                    </a>
             </div>
         </div>
 
@@ -156,8 +91,11 @@
             };
         </script>
 
-        <a href="/index">홈으로 이동</a>
+        <a href="/index">
+            <input type="submit" value="홈으로 이동">
+        </a>
     
     </div>
 </body>
-</html>
+
+{{>common/footer}}	

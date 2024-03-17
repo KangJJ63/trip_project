@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-</head>
+{{>common/header}}
+<title>Document</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
 	$(function(result){		
@@ -47,11 +42,14 @@
     })})
 </script>
 
-<h3>{{userId}}님의 비밀번호 변경</h3>
 <body>
+    <div class="menu_content d-flex flex-column align-items-center justify-content-left text-center">
+        <h3>{{userId}}님의 비밀번호 변경</h3>
     <form id="joinForm" action="/findPw2" method="post">
         <label for="pwd">* Password: </label>
-        <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요." required> <small>최소 8글자</small>
+        <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요." required>
+        <br>
+        <small>최소 4자리 이상의 영문, 숫자, 특수문자 조합</small>
         <br>
         <label for="pwd_equal"> Password 확인: </label>
         <input type="password" id="userPw2" placeholder="비밀번호 확인">
@@ -61,5 +59,11 @@
         <br>
         <input type="hidden" name="userId" id="userId" value="{{userId}}">
         <input type="submit" value="회원가입">
+        </form>
+        <a href="/index">
+            <input type="submit" value="홈으로 이동">
+        </a></div>
 </body>
-</html>
+
+
+{{>common/footer}}	
