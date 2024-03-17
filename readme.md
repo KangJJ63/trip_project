@@ -9,8 +9,6 @@
 
 ## ✨ 프로젝트 설명
 
-![image](https://github.com/YUSEONGMIN/trip_project/assets/68213803/660cc6eb-4fc0-4cf0-b67d-8694bf6b333b)
-
 ![image](./readme/ERD.png)
 
 ```sh
