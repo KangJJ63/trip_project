@@ -8,7 +8,7 @@ public interface CommentService {
     void saveComment(CommentDto dto);
 
     // 댓글 수정
-    void updateComment(Long id, CommentDto dto);
+    void updateComment(CommentDto dto);
 
     // 댓글 삭제
     void deleteComment(Long id);
@@ -17,5 +17,7 @@ public interface CommentService {
     // CommentDto findCommentById(Long id);
 
     // 게시글 내 모든 댓글 조회
-    List<CommentDto> findAllComments(String userId,Long noticeId);
+    List<CommentDto> findAllComments(String userId, Long noticeId);
+
+    void deleteCommentByUserId(String userId);
 }

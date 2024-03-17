@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService{
 
     public void updateUserDto(UserEntity dto) {
         // UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
+        log.info("[updatePw]: " + dto.getUserId());
         UserEntity entity = userRepository.findOneUser(dto.getUserId());
         log.info("[UserServiceImpl][updatePw] Start: entity >>> " + entity);
 
@@ -75,14 +76,6 @@ public class UserServiceImpl implements UserService{
         }
         log.info("[UserService]: " + entity);
         userRepository.save(entity);
-    }
-
-    public void updatePw(UserDto dto) {
-        UserEntity entity = userRepository.getUserDtoById(dto.getUserId());
-        log.info("[UserServiceImpl][updatePw] Start: entity >>> " + entity);
-        if (dto.getUserNm() != null) {
-            entity.setUserNm(dto.getUserNm());
-        }
     }
 
     @Override
@@ -105,21 +98,21 @@ public class UserServiceImpl implements UserService{
         return userDto;
     }
 
-    @Override
-    public UserDto findByUserId(String userId) {
-        UserEntity entity = userDao.findByUserId(userId);
-        UserDto dto = new UserDto();
-        dto.setUserId(entity.getUserId());
-        dto.setUserPw(entity.getUserPw());
-        dto.setUserEmail(entity.getUserEmail());
-        dto.setUserNm(entity.getUserNm());
-        dto.setUserPhNmb(entity.getUserPhNmb());
-        dto.setRole(entity.getRole());
-        dto.setUserSex(entity.getUserSex());
-        dto.setRole(entity.getRole());
+    // @Override
+    // public UserDto findByUserId(String userId) {
+    //     UserEntity entity = userDao.findByUserId(userId);
+    //     UserDto dto = new UserDto();
+    //     dto.setUserId(entity.getUserId());
+    //     dto.setUserPw(entity.getUserPw());
+    //     dto.setUserEmail(entity.getUserEmail());
+    //     dto.setUserNm(entity.getUserNm());
+    //     dto.setUserPhNmb(entity.getUserPhNmb());
+    //     dto.setRole(entity.getRole());
+    //     dto.setUserSex(entity.getUserSex());
+    //     dto.setRole(entity.getRole());
         
-        return null;
-    }
+    //     return null;
+    // }
 
     
 }

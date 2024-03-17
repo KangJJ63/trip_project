@@ -91,13 +91,13 @@
 				<div class="col">
 					<h2 class="notice_title text-center">글 수정</h2>
 				</div>
-					<form class="mt-3" action="/board/notice/{{notice.noticeId}}/edit.do" method="post">
+					<form class="mt-3" action="/board/notice/{{noticeId}}/edit.do" method="post">
                         <div class="mb-3">
 							<input type="hidden" name="userId" value="{{userId}}">
                             <label for="noticeTitle" class="noticeLabel">제목</label>
-                            <input type="text" class="form-control" name="title" id="noticeTitle" value="{{notice.title}}" required>
+                            <input type="text" class="form-control" name="title" id="noticeTitle" value="{{title}}" required>
                             <label for="noticeContents" class="noticeLabel">내용</label>
-                            <textarea class="form-control" id="noticeContents" name="contents" rows="3">{{notice.contents}}</textarea>
+                            <textarea class="form-control" id="noticeContents" name="contents" rows="3">{{contents}}</textarea>
 							<div class="notice_btn d-flex justify-content-end">
 								<button class="btn notice_save_btn my-1 px-1 py-0" style="font-size:15px;" type="submit">저장</button>
 						</div>
@@ -109,13 +109,13 @@
 	</div>
 </div>
 </body>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
 <script>
 	Handlebars.registerHelper('formatDate', function(date) {
     return moment(date).format('YYYY-MM-DD');
 });
 </script>
 {{>common/footer}}	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 

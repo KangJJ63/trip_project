@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Camino - Join</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-<link href="/static/plugins/font-awesome-6.5.1/css/all.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/static/css/main_styles.css">
-<link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
+{{>common/header}}
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-</head>
 
 <script type="text/javascript">
 	$(function(result){		
@@ -152,68 +140,9 @@
             }); //End Ajax
         });
     })
-
-
-
 </script>
 
 <body>
-
-<div class="super_container">
-    <!-- Header -->
-
-    <header class="header">
-
-        <!-- Main Navigation -->
-
-        <nav class="main_nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-                        <div class="logo_container">
-                            <div class="logo"><a href="/"><img src="/static/img/logo.png" alt="">CAMINO</a></div>
-                        </div>
-                        <div class="main_nav_container ml-auto">
-                            <ul class="main_nav_list">
-                                <li class="main_nav_item"><a href="/">홈</a></li>
-                                <li class="main_nav_item"><a href="/lodge">숙박</a></li>
-                                <li class="main_nav_item"><a href="/plan">일정</a></li>
-                                <li class="main_nav_item"><a href="/board">게시판</a></li>
-                                <!-- <li class="main_nav_item"><a href="contact.html">탑 메뉴</a></li> -->
-                            </ul>
-                        </div>
-
-                        <div class="hamburger ml-lg-0 ml-auto">
-                            <i class="fa fa-bars trans_200"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>	
-        </nav>
-
-    </header>
-    <div class="home">
-        
-        <!-- Home Slider -->
-
-        <div class="home_slider_container">
-            
-            <div class="owl-carousel home_slider">
-                <!-- Slider Item -->
-                <div class="home_slider_item">
-                    <!-- Image by https://unsplash.com/@anikindimitry -->
-                    <div class="home_slider_background" style="background-image:url(/static/img/home_slider.jpg)"></div>
-
-                    <div class="home_slider_content text-center">
-                        <div class="home_slider_content_inner">
-                            <h3 class="main_nav_item_select">회원가입</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{>common/sidebar}}
-    </div>
     
     <div class="menu_content d-flex flex-column align-items-center justify-content-left text-center">
         <div class="menu_close_container"><div class="menu_close"></div></div>
@@ -221,6 +150,7 @@
         <form id="joinForm" action="/join" method="post">
             <label for="id">* Id: </label>
             <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." required autofocus>
+            <br>
             <small>공백 제외, 영문, 숫자 조합</small> 
             <br>
             <label id="label1"></label>
@@ -228,6 +158,7 @@
             <br>
             <label for="pwd">* Password: </label>
             <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요." required>
+            <br>
             <small>최소 4자리 이상의 영문, 숫자, 특수문자 조합</small>
             <br>
             <label for="pwd_equal"> Password 확인: </label>
@@ -260,7 +191,13 @@
             <!-- submit 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
             <!-- dto로 받아서 서비스로 전달 -> mysql에 저장 -->
         </form>
-        <a href="/loginPage">로그인 화면 이동</a>
-        <a href="/board">홈으로 이동</a>    
+        <a href="/loginPage">
+            <input type="submit" value="로그인 화면 이동">
+        </a>
+        <a href="/index">
+            <input type="submit" value="홈으로 이동">
+        </a>
+
 </body>
-</html>
+
+{{>common/footer}}	

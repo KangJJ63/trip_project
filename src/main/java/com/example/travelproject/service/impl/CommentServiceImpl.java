@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,24 +32,26 @@ public class CommentServiceImpl implements CommentService {
     public void saveComment(CommentDto dto) {
         CommentEntity comment = new CommentEntity();
         // 필요한 필드 설정, 예를 들면:
-        comment.setNotice(boardDao.findByNoticeId(dto.getNoticeId()));
+        comment.setBoard(boardDao.findByNoticeId(dto.getNoticeId()));
         comment.setUser(userDao.findByUserId(dto.getUserId()));
         comment.setContents(dto.getContents());
-        comment.setNotice(boardDao.findByNoticeId(dto.getNoticeId()));
+        comment.setBoard(boardDao.findByNoticeId(dto.getNoticeId()));
         commentDao.saveComment(comment);
     }
 
     @Override
-    public void updateComment(Long id, CommentDto dto) {
+    public void updateComment(CommentDto dto) {
         log.info("[CommentServiceImpl][updateComment]: Start");
-        Optional<CommentEntity> commentOptional = commentDao.findCommentById(id);
-        if (commentOptional.isPresent()) {
-            CommentEntity comment = commentOptional.get();
-            comment.setContents(dto.getContents());
-            commentDao.saveComment(comment);
-        } else {
-            throw new RuntimeException("Comment not found with id " + id);
-        }
+        CommentEntity commentEntity = commentDao.findCommentById(dto.getCommentId());
+        commentEntity.setContents(dto.getContents());
+        commentDao.saveComment(commentEntity);
+        // if (commentOptional.isPresent()) {
+        //     CommentEntity comment = commentOptional.get();
+        //     comment.setContents(dto.getContents());
+        //     commentDao.saveComment(comment);
+        // } else {
+        //     throw new RuntimeException("Comment not found with id " + id);
+        // }
     }
 
     @Override
@@ -58,24 +59,7 @@ public class CommentServiceImpl implements CommentService {
         commentDao.deleteComment(id);
     }
 
-    // @Override
-    // public CommentDto findCommentById(Long id) {
-    //     Optional<CommentEntity> comment = commentDao.findCommentById(id);
-    //     if (comment.isPresent()) {
-    //         CommentEntity entity = comment.get();
-    //         return new CommentDto(
-    //             entity.getCommentId(),
-    //             // Convert Entity references to appropriate identifiers or objects
-    //             entity.getNotice().getNoticeId(), // 예시입니다. 실제 구현은 조정이 필요합니다.
-    //             entity.getUser().toString(), // 예시입니다.
-    //             entity.getContents(),
-    //             localtimeToString(entity.getCreateDate())
-    //         );
-    //     } else {
-    //         throw new RuntimeException("Comment not found with id " + id);
-    //     }
-    // }
-
+   
     public String localtimeToString(LocalDateTime localDateTime){
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDateTime);
     }
@@ -89,10 +73,14 @@ public class CommentServiceImpl implements CommentService {
             CommentDto commentDto = new CommentDto();
             commentDto.setCommentId(commentEntity.getCommentId());
             commentDto.setUserId(commentEntity.getUser().getUserId());
-            commentDto.setNoticeId(commentEntity.getNotice().getNoticeId());
+            commentDto.setNoticeId(commentEntity.getBoard().getNoticeId());
             commentDto.setContents(commentEntity.getContents());
             commentDto.setCreateDate(localtimeToString(commentEntity.getCreateDate()));
-            if(userId != null && userId.equals(commentEntity.getUser().getUserId())){
+            
+            if(userId!=null && 
+                !userId.isEmpty() &&
+            userId.equals(commentEntity.getUser().getUserId()) || 
+            userDao.findByUserId(userId).getRole().equals("ADMIN")){
                 commentDto.setSameUserYn(true);
             }else{
                 commentDto.setSameUserYn(false);
@@ -100,5 +88,17 @@ public class CommentServiceImpl implements CommentService {
             commentDtos.add(commentDto);
         }
         return commentDtos;
+    }
+
+    @Override
+    public void deleteCommentByUserId(String userId) {
+        log.info("[commentService][deleteCommentByUserId]" + commentDao.findCommentsByUserId(userId));
+        List<Long> list = commentDao.findCommentsByUserId(userId);
+        log.info("[commentService][deleteCommentByUserId]" + list + ">>>" + list.size());
+
+        for (int i=0; i < list.size(); i++) {
+            commentDao.deleteComment(list.get(i));
+        }
+        log.info("[commentService][deleteCommentByUserId] End");
     }
 }

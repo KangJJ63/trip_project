@@ -36,6 +36,7 @@ public class MainController {
     @Autowired
     private UserDao userDao;
 
+
     /*
      * 누구나 접근 가능
      */
@@ -73,14 +74,15 @@ public class MainController {
     }
 
     @PostMapping("/findPw")
-    public String findPwd(@ModelAttribute UserEntity entity, Model model) {
+    public String findPwd(@ModelAttribute UserEntity entity, Model model, HttpSession session) {
         log.info("[find_pw1]: " + entity);
         log.info("[find_pw1-1]: " + userRepository.findByUserId(entity.getUserId()));
         if (userRepository.findByUserId(entity.getUserId()) == null) {
             log.info("가입된 아이디가 아닌 경우에...");
             return "redirect:/loginPage"; // 가입된 아이디가 아닙니다. 출력하는 방법?
         }
-        model.addAttribute("userId", entity.getUserId());
+        session.setAttribute("userId", entity.getUserId());
+        // model.addAttribute("userId", entity.getUserId());
         log.info("[find_pw1-2]: " + model);
         return "login/findPw";
     }
@@ -143,24 +145,17 @@ public class MainController {
     @GetMapping("/user/index")
 
     public String user(Authentication authentication, Model model, HttpSession session) {
-        session.setAttribute("username", authentication.getName());
-        // UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        // model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         return "staff/user";
     }
 
     @GetMapping("/manager/index")
     public String manager(Authentication authentication, Model model) {
-
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        model.addAttribute("username", userRepository.getUserDtoById(userDetails.getUsername()).getUserNm());
         return "staff/manager1";
     }
 
     @GetMapping("/admin/index")
     public String admin(Authentication authentication, HttpSession session) {
-        session.setAttribute("username", authentication.getName());
-        session.setAttribute("admin", authentication.getName());
+        // session.setAttribute("admin", authentication.getName());
         return "staff/user";
     }
 
@@ -199,9 +194,9 @@ public class MainController {
     @GetMapping("/findId")
     public String findUserId(String userNm, String userEmail, Model model) {
         log.info("[MainController][findUserId] " + userNm + userEmail);
-        UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
-        if (entity != null) {
-            model.addAttribute("userId", entity.getUserId());
+        UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+        if (userEntity != null) {
+            model.addAttribute("userId", userEntity.getUserId());
             return "login/userIdPage";
         } else {
             model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");

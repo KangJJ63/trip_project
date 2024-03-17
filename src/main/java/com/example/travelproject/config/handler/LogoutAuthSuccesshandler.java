@@ -32,8 +32,11 @@ public class LogoutAuthSuccesshandler implements LogoutSuccessHandler {
           UserDetails userDetails = (UserDetails) authentication.getPrincipal();
           userService.updateIsLoginById(userDetails.getUsername(), false);
           HttpSession session = request.getSession();
-          session.removeAttribute("userId");
-          session.removeAttribute("role");
+          
+          session.removeAttribute("loginUserName");
+          session.removeAttribute("loginUserId");
+          session.removeAttribute("adminYn");
+
           response.sendRedirect("/index");
         }
         }

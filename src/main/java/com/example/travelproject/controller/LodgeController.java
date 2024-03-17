@@ -18,7 +18,6 @@ public class LodgeController {
     public String mainLodge(Authentication authentication, Model model, HttpSession session){
         log.info("[LodgeController][mainLodge]: Start");
         if (authentication != null){
-            session.setAttribute("username", authentication.getName());
             if (authentication.getName().equals("admin")) {
                 session.setAttribute("admin", authentication.getName());
             }

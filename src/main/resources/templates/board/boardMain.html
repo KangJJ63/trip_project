@@ -1,6 +1,6 @@
 {{>common/header}}
 <title>게 시 판</title>
-</head>
+
 <style>
 	
 	.notice_panel{
@@ -58,7 +58,7 @@
 </style>
 <body>
 
-<div class="noticeList">
+<div class="noticeList pb-3 mb-10">
 	<div class="container">
 		<div class="notice_panel">
 			<div class="row">
@@ -103,18 +103,21 @@
 			</div>
 			<hr class="my-0">
 			{{/boardList}}
-			{{#userId}}
-				<div class="notice_btn d-flex justify-content-end">
-					<a class="btn btn-light my-1 px-1 py-0" role="button" href="/board/notice" style="font-size:15px;" >
-						새글 등록
-					</a>
-				</div>
-			{{/userId}}
+
+			{{#adminYn}}
+			<div class="notice_btn d-flex justify-content-end">
+				<a class="btn btn-light my-1 px-1 py-0" role="button" href="/board/notice" style="font-size:15px;" >
+					새글 등록
+				</a>
+			</div>
+			{{/adminYn}}
+				
 		</div>
 	</div>
 </div>
 </body>
-<script src="/static/js/bootstrap.min.js"></script>
+<!-- <script src="/static/js/bootstrap.min.js"></script> -->
+
+{{>common/footer}}	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-{{>common/footer}}	

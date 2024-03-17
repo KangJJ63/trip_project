@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,19 +39,20 @@ public class CommentController {
         return "redirect:/board/notice/"+commentDto.getNoticeId(); // 댓글 목록으로 리다이렉트
     }
 
-    // // 댓글 상세 보기
-    // @GetMapping("/{commentId}")
-    // public String viewComment(@PathVariable Long commentId, Model model) {
-    //     CommentDto commentDto = commentService.findCommentById(commentId);
-    //     model.addAttribute("comment", commentDto);
-    //     return "comments/view"; // comments/view.html 뷰 반환
-    // }
+    // 댓글 상세 보기
+    @PostMapping("/update")
+    public String updateComment(@ModelAttribute CommentDto commentDto) {
+        log.info("[CommentController][update] start");
+        log.info("CommentController - dto => "+commentDto.toString());
+        commentService.updateComment(commentDto);
+        return "redirect:/board/notice/"+commentDto.getNoticeId();
+    }
 
     // 댓글 삭제
-    @GetMapping("/delete/{commentId}")
-    public String deleteComment(@PathVariable Long commentId) {
-        commentService.deleteComment(commentId);
-        return "redirect:/comments"; // 댓글 목록으로 리다이렉트
+    @PostMapping("/delete")
+    public String deleteComment(@ModelAttribute CommentDto commentDto) {
+        commentService.deleteComment(commentDto.getCommentId());
+        return "redirect:/board/notice/"+commentDto.getNoticeId();
     }
 
 
