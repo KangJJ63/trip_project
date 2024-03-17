@@ -245,7 +245,7 @@
 							<p class="comment_user my-1">{{userId}}</p>
 						</div>
 						
-						<form id="commentTask" class="mt-1" method="post" enctype="application/x-www-form-urlencoded">
+						<form id="commentTask_{{commentId}}" class="mt-1" method="post" enctype="application/x-www-form-urlencoded">
 							<div class="row mt-0">
 								<textarea class="form-control comment_textarea" name="contents" {{^sameUserYn}}readonly{{/sameUserYn}}>{{contents}}</textarea>
 							</div>
@@ -256,8 +256,8 @@
 									<input type="hidden" name="commentId" value="{{commentId}}">
 									{{#sameUserYn}}
 									<div class="row d-flex justify-content-end mt-1">
-										<button class="btn comment_update_btn mb-1 px-1 py-0 mr-2" onclick="commentUpdate()" type="button">수정</button>
-										<button class="btn comment_del_btn mb-1 px-1 py-0" onclick="commentDelete()" type="button">삭제</button>
+										<button class="btn comment_update_btn mb-1 px-1 py-0 mr-2" onclick="commentUpdate(this)" type="button">수정</button>
+										<button class="btn comment_del_btn mb-1 px-1 py-0" onclick="commentDelete(this)" type="button">삭제</button>
 									</div>
 									{{/sameUserYn}}
 								</div>
@@ -297,13 +297,17 @@
             document.getElementById("noticeTask").submit();
         }
     }
-	function commentUpdate(commentId){
-		document.getElementById("commentTask").action = "/comments/update";
-        document.getElementById("commentTask").submit();
+	function commentUpdate(button){
+		let form = button.closest('form');
+		// var formId = form.getAttribute('id');
+		form.action = "/comments/update";
+        form.submit();
 	}
-	function commentDelete(){
-		document.getElementById("commentTask").action = "/comments/delete";
-        document.getElementById("commentTask").submit();
+	function commentDelete(button){
+		let form = button.closest('form');
+    	// var form = document.getElementById(formId);
+		form.action = "/comments/delete";
+        form.submit();
 	}
 </script>
 {{>common/footer}}	

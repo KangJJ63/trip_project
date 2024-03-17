@@ -1,7 +1,6 @@
 package com.example.travelproject.model.dao.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +10,9 @@ import com.example.travelproject.model.entity.BoardEntity;
 import com.example.travelproject.model.entity.CommentEntity;
 import com.example.travelproject.model.repository.CommentRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 @SuppressWarnings("null")
 public class CommentDaoImpl implements CommentDao {
@@ -36,7 +38,8 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     // 사용자 ID에 따른 댓글 검색
-    public List<CommentEntity> findCommentsByUserId(String userId) {
+    public List<Long> findCommentsByUserId(String userId) {
+        log.info("[CommentDaoImpl][findCommentsByUserId] Start");
         return commentRepository.findByUserUserId(userId);
     }
 }

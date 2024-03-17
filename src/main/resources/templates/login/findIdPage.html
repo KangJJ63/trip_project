@@ -1,99 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Camino - Find id</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Travelix Project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-<link href="/static/plugins/font-awesome-6.5.1/css/all.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/static/css/contact_styles.css">
-<link rel="stylesheet" type="text/css" href="/static/css/contact_responsive.css">
-</head>
-<body>
+{{>common/header}}
 
-<div class="super_container">
-    
-    <!-- Header -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1050; /* Sit on top */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
 
-    <header class="header">
+	/* Modal Content/Box */
+	.modal-content {
+		background-color: #fefefe;
+		margin: 15% auto; /* 15% from the top and centered */
+		padding: 20px;
+		border: 1px solid #888;
+		width: 30%; /* Could be more or less, depending on screen size */                          
+	}
+</style>
 
-		<!-- Top Bar -->
-
-		<div class="top_bar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="user_box ml-auto my-auto">
-							<div class="user_box_link">
-								{{#loginUserName}}
-								<a class="user_info btn btn-link p-1" role="button" href="#">
-									<i class="fas fa-circle-user"></i>
-									<span>{{loginUserName}}님 반갑습니다.</span>
-									<a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:15px;" >
-										로그아웃
-									</a>
-									<a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/mypage" style="font-size:15px;" >
-										마이페이지
-									</a>	
-									{{#admin}}
-										<a class="user_mypage btn btn-light my-1 px-1 py-0" role="button" href="/admin/setting" style="font-size:15px;" >
-											관리자 페이지
-										</a>	
-									</a>
-									{{/admin}}
-								</a>
-								{{/loginUserName}}
-								{{^loginUserName}}
-								<a class="user_join btn btn-light my-1 px-1 py-0" role="button" href="/loginPage" style="font-size:15px;" >
-									로그인 / 회원가입
-								</a>
-								{{/loginUserName}}
-							</div> 
-						</div>
-					</div>
-				</div>
-			</div>		
-		</div>
-
-
-        <!-- Main Navigation -->
-
-        <nav class="main_nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
-                        <div class="logo_container">
-                            <div class="logo"><a href="/"><img src="/static/img/logo.png" alt="">CAMINO</a></div>
-                        </div>
-                        <div class="main_nav_container ml-auto">
-                            <ul class="main_nav_list">
-                                <li class="main_nav_item"><a href="/">홈</a></li>
-                                <li class="main_nav_item"><a href="/lodge">숙박</a></li>
-                                <li class="main_nav_item"><a href="/plan">일정</a></li>
-                                <li class="main_nav_item"><a href="/board">게시판</a></li>
-                                <!-- <li class="main_nav_item"><a href="contact.html">탑 메뉴</a></li> -->
-                            </ul>
-                        </div>
-
-                        <div class="hamburger ml-lg-0 ml-auto">
-                            <i class="fa fa-bars trans_200"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>	
-        </nav>
-    </header>
-
-
-    <div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/contact_background.jpg"></div>
-		<div class="home_content">
-			<div class="home_title">아이디 찾기</div>
-		</div>
-	</div>        
-
+<body>      
     <div class="contact_form_section">
         <div class="container">
             <div class="row">
@@ -110,13 +43,7 @@
                             <button type="submit" id="form_submit_button" class="form_submit_button button trans_200">아이디 찾기<span></span><span></span><span></span></button>
                                 <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->
                         </form>
-                        
-                        {{#userId}}
-                        <div>
-                            <p>아이디 : {{userId}}</p>
-                        </div>
-                        {{/userId}}
-                
+
                         {{#errorMessage}}
                         <div>
                             <p>{{errorMessage}}</p>
@@ -125,20 +52,44 @@
                 
                 
                         <div class="contact_info_item d-flex justify-content-around">
-                            <div class="contact_info_text"><a href="/loginPage" target="_top">로그인 화면 이동</a></div>
+                            <div class="form_submit_button button trans_200"><a href="/loginPage" target="_top">로그인 화면 이동<span></span><span></span><span></span></a></div>
                         </div>
                         <div class="contact_info_item d-flex justify-content-around">
-                            <div class="contact_info_text"><a href="/findPw">비밀번호 찾기</a></div>	
+                            <div class="form_submit_button button trans_200"><a onclick="open_pop();">비밀번호 찾기<span></span><span></span><span></span></a></div>	
+                        </div>
+
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                    <p style="text-align: center;">
+                                        <span style="font-size: 14pt;">
+                                            <b><span style="font-size: 15pt;">아이디를 입력하세요.</span></b></span></p>
+                                    <form name="loginForm" action="/findPw" method="post">
+                                        <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." autofocus>
+                                        <br>
+                                        <input type="submit" value="조회하기">
+                                    </form>
+                                    <a onclick="close_pop();">
+                                        <input type="submit" value="닫기">
+                                    </a>
+                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-</div>
+
+    <script type="text/javascript">
+        function open_pop(flag) {
+            $('#myModal').show();
+        };
+        //팝업 Close 기능
+        function close_pop(flag) {
+            $('#myModal').hide();
+        };
+    </script>
 
 </body>
-</html>
+
+{{>common/footer}}	

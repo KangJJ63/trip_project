@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
-    <title>Document</title>
-</head>
+{{>common/header}}
 
-<h3>관리자 {{admin}}님</h3>
+<h3>관리자 {{adminYn}}님</h3>
 <body>
     {{#userlist}}
     <div class="member_list" >
@@ -42,4 +35,4 @@
     </a>
 
 </body>
-</html>
+{{>common/footer}}	

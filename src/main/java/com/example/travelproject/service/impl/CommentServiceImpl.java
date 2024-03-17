@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,5 +88,17 @@ public class CommentServiceImpl implements CommentService {
             commentDtos.add(commentDto);
         }
         return commentDtos;
+    }
+
+    @Override
+    public void deleteCommentByUserId(String userId) {
+        log.info("[commentService][deleteCommentByUserId]" + commentDao.findCommentsByUserId(userId));
+        List<Long> list = commentDao.findCommentsByUserId(userId);
+        log.info("[commentService][deleteCommentByUserId]" + list + ">>>" + list.size());
+
+        for (int i=0; i < list.size(); i++) {
+            commentDao.deleteComment(list.get(i));
+        }
+        log.info("[commentService][deleteCommentByUserId] End");
     }
 }
