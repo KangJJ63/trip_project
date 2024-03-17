@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.travelproject.model.dao.UserDao;
+import com.example.travelproject.model.dto.UserDto;
 import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
@@ -81,7 +82,7 @@ public class MainController {
             log.info("가입된 아이디가 아닌 경우에...");
             return "redirect:/loginPage"; // 가입된 아이디가 아닙니다. 출력하는 방법?
         }
-        session.setAttribute("userId", entity.getUserId());
+        // session.setAttribute("userId", entity.getUserId());
         // model.addAttribute("userId", entity.getUserId());
         log.info("[find_pw1-2]: " + model);
         return "login/findPw";
@@ -155,7 +156,7 @@ public class MainController {
 
     @GetMapping("/admin/index")
     public String admin(Authentication authentication, HttpSession session) {
-        session.setAttribute("admin", authentication.getName());
+        // session.setAttribute("admin", authentication.getName());
         return "staff/user";
     }
 
@@ -194,9 +195,9 @@ public class MainController {
     @GetMapping("/findId")
     public String findUserId(String userNm, String userEmail, Model model) {
         log.info("[MainController][findUserId] " + userNm + userEmail);
-        UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
-        if (entity != null) {
-            model.addAttribute("userId", entity.getUserId());
+        UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+        if (userEntity != null) {
+            model.addAttribute("userId", userEntity.getUserId());
             return "login/userIdPage";
         } else {
             model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");

@@ -39,13 +39,6 @@ public class BoardController {
     @GetMapping({"","/"})
     public String mainBoard(Authentication authentication, Model model, HttpSession session){
         model.addAttribute("boardList", boardService.findNoticeList());
-        
-        if (authentication != null) {
-            // model.addAttribute("username", authentication.getName());
-            if (authentication.getName().equals("admin")) {
-                session.setAttribute("admin", authentication.getName());
-            }
-        }
         return "board/boardMain";
     }
 
@@ -54,12 +47,6 @@ public class BoardController {
     //권한 : 관리자만(authentication)
     @GetMapping("/notice")
     public String newNoticeForm(Authentication authentication, Model model, HttpSession session){
-        if (authentication != null) {
-            session.setAttribute("username", authentication.getName());
-            if (authentication.getName().equals("admin")) {
-                session.setAttribute("admin", authentication.getName());
-            }
-        }
         return "board/noticeForm";
     }
         
@@ -87,18 +74,9 @@ public class BoardController {
         }
 
         boardService.updateViewCnt(noticeId);
-
         BoardDto boardDto = boardService.findtByNoticeId(noticeId);
-        String userId = null;
-
-        session.setAttribute("username", authentication.getName());
-        if (authentication.getName().equals("admin")) {
-            session.setAttribute("admin", authentication.getName());
-        }
-        
-        if(session.getAttribute("userId")!=null){
-            userId = session.getAttribute("userId").toString();
-        }
+        String userId = authentication.getName();
+        log.info("userId : " + userId);
         
         List<CommentDto> commentDtos = commentService.findAllComments(userId,noticeId);
         for(CommentDto dto : commentDtos){

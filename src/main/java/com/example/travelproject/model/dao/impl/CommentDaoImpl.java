@@ -23,8 +23,8 @@ public class CommentDaoImpl implements CommentDao {
         return commentRepository.save(comment);
     }
 
-    public Optional<CommentEntity> findCommentById(Long id) {
-        return commentRepository.findById(id);
+    public CommentEntity findCommentById(Long id) {
+        return commentRepository.findById(id).orElse(null);
     }
 
     public List<CommentEntity> findAllComments(BoardEntity notice) {

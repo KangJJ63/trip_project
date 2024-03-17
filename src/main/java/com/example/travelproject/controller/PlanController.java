@@ -16,12 +16,12 @@ public class PlanController {
 
     @GetMapping({"","/"})
     public String mainPlan(Authentication authentication, Model model, HttpSession session){
-        log.info("[PlanController][mainPlan]: Start");
-        if (authentication != null) {
-            if (authentication.getName().equals("admin")) {
-                session.setAttribute("admin", authentication.getName());
-            }
-        }
+        // log.info("[PlanController][mainPlan]: Start");
+        // if (authentication != null) {
+        //     if (authentication.getName().equals("admin")) {
+        //         session.setAttribute("admin", authentication.getName());
+        //     }
+        // }
         return "plan/planMain";
     }
 }
