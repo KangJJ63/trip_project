@@ -44,6 +44,7 @@ public class CommentController {
     @PostMapping("/update")
     public String updateComment(@ModelAttribute CommentDto commentDto) {
         log.info("[CommentController][update] start");
+        log.info("CommentController - dto => "+commentDto.toString());
         commentService.updateComment(commentDto);
         return "redirect:/board/notice/"+commentDto.getNoticeId();
     }
