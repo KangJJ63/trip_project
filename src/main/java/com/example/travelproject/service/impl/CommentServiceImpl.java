@@ -41,16 +41,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void updateComment(Long id, CommentDto dto) {
+    public void updateComment(CommentDto dto) {
         log.info("[CommentServiceImpl][updateComment]: Start");
-        Optional<CommentEntity> commentOptional = commentDao.findCommentById(id);
-        if (commentOptional.isPresent()) {
-            CommentEntity comment = commentOptional.get();
-            comment.setContents(dto.getContents());
-            commentDao.saveComment(comment);
-        } else {
-            throw new RuntimeException("Comment not found with id " + id);
-        }
+        CommentEntity commentEntity = commentDao.findCommentById(dto.getCommentId());
+        commentEntity.setContents(dto.getContents());
+        commentDao.saveComment(commentEntity);
+        // if (commentOptional.isPresent()) {
+        //     CommentEntity comment = commentOptional.get();
+        //     comment.setContents(dto.getContents());
+        //     commentDao.saveComment(comment);
+        // } else {
+        //     throw new RuntimeException("Comment not found with id " + id);
+        // }
     }
 
     @Override
@@ -58,24 +60,7 @@ public class CommentServiceImpl implements CommentService {
         commentDao.deleteComment(id);
     }
 
-    // @Override
-    // public CommentDto findCommentById(Long id) {
-    //     Optional<CommentEntity> comment = commentDao.findCommentById(id);
-    //     if (comment.isPresent()) {
-    //         CommentEntity entity = comment.get();
-    //         return new CommentDto(
-    //             entity.getCommentId(),
-    //             // Convert Entity references to appropriate identifiers or objects
-    //             entity.getNotice().getNoticeId(), // 예시입니다. 실제 구현은 조정이 필요합니다.
-    //             entity.getUser().toString(), // 예시입니다.
-    //             entity.getContents(),
-    //             localtimeToString(entity.getCreateDate())
-    //         );
-    //     } else {
-    //         throw new RuntimeException("Comment not found with id " + id);
-    //     }
-    // }
-
+   
     public String localtimeToString(LocalDateTime localDateTime){
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDateTime);
     }
@@ -92,7 +77,11 @@ public class CommentServiceImpl implements CommentService {
             commentDto.setNoticeId(commentEntity.getBoard().getNoticeId());
             commentDto.setContents(commentEntity.getContents());
             commentDto.setCreateDate(localtimeToString(commentEntity.getCreateDate()));
-            if(userId != null && userId.equals(commentEntity.getUser().getUserId())){
+            
+            if(userId!=null && 
+                !userId.isEmpty() &&
+            userId.equals(commentEntity.getUser().getUserId()) || 
+            userDao.findByUserId(userId).getRole().equals("ADMIN")){
                 commentDto.setSameUserYn(true);
             }else{
                 commentDto.setSameUserYn(false);

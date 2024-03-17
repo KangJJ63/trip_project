@@ -27,10 +27,10 @@
 					<div class="col d-flex flex-row">
 						<div class="user_box ml-auto my-auto">
 							<div class="user_box_link">
-								{{#username}}
+								{{#loginUserName}}
 								<a class="user_info btn btn-link p-1" role="button" href="#">
 									<i class="fas fa-circle-user"></i>
-									<span>{{username}}님 반갑습니다.</span>
+									<span>{{loginUserName}}님 반갑습니다.</span>
 									<a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:15px;" >
 										로그아웃
 									</a>
@@ -44,12 +44,12 @@
 									</a>
 									{{/admin}}
 								</a>
-								{{/username}}
-								{{^username}}
+								{{/loginUserName}}
+								{{^loginUserName}}
 								<a class="user_join btn btn-light my-1 px-1 py-0" role="button" href="/loginPage" style="font-size:15px;" >
 									로그인 / 회원가입
 								</a>
-								{{/username}}
+								{{/loginUserName}}
 							</div> 
 						</div>
 					</div>
@@ -103,9 +103,9 @@
                     <div class="contact_form_container">
                         <div class="contact_title text-center">아이디 찾기</div>
                         <form action="/findId" id="contact_form" class="contact_form text-center" method="get">
-                            <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="홍길동" required="required" data-error="이름을 입력하세요">
+                            <input type="text" id="contact_form_name" name="userNm" class="contact_form_name input_field" placeholder="홍길동" required="required" data-error="이름을 입력하세요">
                             <br>
-                            <input type="email" id="contact_form_email" class="contact_form_email input_field" placeholder="id@casimo.com" required="required" data-error="이메일을 입력하세요">
+                            <input type="email" id="contact_form_email" name="userEmail" class="contact_form_email input_field" placeholder="id@casimo.com" required="required" data-error="이메일을 입력하세요">
                             <br>
                             <button type="submit" id="form_submit_button" class="form_submit_button button trans_200">아이디 찾기<span></span><span></span><span></span></button>
                                 <!-- 버튼을 누르면 post 방식으로 컨트롤에게 요청 -->

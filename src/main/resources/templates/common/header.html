@@ -31,10 +31,10 @@
 					<div class="col d-flex flex-row">
 						<div class="user_box ml-auto my-auto">
 							<div class="user_box_link">
-								{{#username}}
+								{{#loginUserName}}
 								<a class="user_info btn btn-link p-1" role="button" href="#">
 									<i class="fas fa-circle-user"></i>
-									<span>{{username}}님 반갑습니다.</span>
+									<span>{{loginUserName}}님 반갑습니다.</span>
 									<a class="user_logout btn btn-light my-1 px-1 py-0" role="button" href="/logout" style="font-size:15px;" >
 										로그아웃
 									</a>
@@ -48,12 +48,12 @@
 									</a>
 									{{/admin}}
 								</a>
-								{{/username}}
-								{{^username}}
+								{{/loginUserName}}
+								{{^loginUserName}}
 								<a class="user_join btn btn-light my-1 px-1 py-0" role="button" href="/loginPage" style="font-size:15px;" >
 									로그인 / 회원가입
 								</a>
-								{{/username}}
+								{{/loginUserName}}
 							</div> 
 						</div>
 					</div>

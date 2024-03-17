@@ -40,20 +40,17 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
       HttpSession session = request.getSession();
       UserDto dto = userService.findByUserId(userDetails.getUsername());
 
-      session.setAttribute("userId",dto.getUserId());
-      session.setAttribute("role", dto.getRole());
-      session.setAttribute("username", dto.getUserNm());
+      session.setAttribute("loginUserId",dto.getUserId());
+      session.setAttribute("loginUserName", dto.getUserNm());
+      if(dto.getRole().equals("ADMIN")){
+        session.setAttribute("adminYn", true);
+      }else{
+        session.setAttribute("adminYn",false);
+      }
       
+      log.info("loginUserId : "+dto.getUserId() +" loginRole : " + dto.getRole() + " loginUserName : "+dto.getUserNm());
       log.info("Authorities : "+userDetails.getAuthorities());
-    // } else {
-    //   HttpSession session = request.getSession();
-    //   UserDto dto = userService.findByUserId(userDetails.getUsername());
 
-    //   session.setAttribute("loginUserId", dto.getUserId());
-    //   session.setAttribute("role", dto.getRole());
-
-    //   log.info("[Authorities] >>> " + userDetails.getAuthorities());
-      
       if (userDetails.getUsername().equals("admin")) {
       response.sendRedirect("/admin/index");
       } else {
