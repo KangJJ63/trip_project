@@ -28,7 +28,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+// @ToString
 @Entity(name = "BoardEntity")
 @Table(name = "board")
 public class BoardEntity extends BaseEntity{
