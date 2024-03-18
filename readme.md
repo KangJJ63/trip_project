@@ -5,9 +5,9 @@
 프로젝트 주제: 순례 길 안내 및 커뮤니티 플랫폼  
 
 프로젝트 주제 설명:  
-"순례길 관광객들을 위한 순례 루트 계획 및 추천  
-순례 루트 주변 인프라(상가,숙박 등) 정보 제공  
-실시간 Talk를 통한 상태 및 감정 공유"
+- "순례길 관광객들을 위한 순례 루트 계획 및 추천  
+- 순례 루트 주변 인프라(상가,숙박 등) 정보 제공  
+- 실시간 Talk를 통한 상태 및 감정 공유"
 
 활용 기술 스택: Java, Springboot, Bootstrap
 
@@ -88,16 +88,16 @@
  ┃ ┣ 📜intro_2.jpg
  ┃ ┗ 📜intro_3.jpg
 ```
-📂controller
- 📜BoardController.java : 게시판 페이지
- 📜CommentController.java : 게시글 내의 페이지
- 📜MainController.java : 메인 페이지
- 📜MypageController.java : 마이 페이지
-
-📂service
- 📜BoardService.java : 게시판 작성/수정/삭제 기능 구현
- 📜CommentService.java : 댓글 작성/수정/삭제 기능 구현
- 📜UserService.java : 회원가입/탈퇴/정보수정 및 ID/PW 찾기 기능 구현
+📂controller  
+ 📜BoardController.java : 게시판 페이지  
+ 📜CommentController.java : 게시글 내의 페이지  
+ 📜MainController.java : 메인 페이지  
+ 📜MypageController.java : 마이 페이지  
+  
+📂service  
+ 📜BoardService.java : 게시판 작성/수정/삭제 기능 구현  
+ 📜CommentService.java : 댓글 작성/수정/삭제 기능 구현  
+ 📜UserService.java : 회원가입/탈퇴/정보수정 및 ID/PW 찾기 기능 구현  
 
 ----------
 
