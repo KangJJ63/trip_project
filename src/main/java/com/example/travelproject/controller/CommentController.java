@@ -23,11 +23,11 @@ public class CommentController {
     private CommentService commentService;
 
     // 댓글 작성 페이지
-    @GetMapping("/new")
-    public String newCommentForm(Model model) {
-        model.addAttribute("comment", new CommentDto());
-        return "comments/new"; // comments/new.html 뷰 반환
-    }
+    // @GetMapping("/new")
+    // public String newCommentForm(Model model) {
+    //     model.addAttribute("comment", new CommentDto());
+    //     return "comments/new"; // comments/new.html 뷰 반환
+    // }
 
     // 댓글 저장
     @PostMapping("/save")
