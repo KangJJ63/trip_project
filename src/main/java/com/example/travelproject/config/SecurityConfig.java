@@ -66,10 +66,6 @@ public class SecurityConfig {
                 .requestMatchers("/user/**")
                     // 인증(로그인)만 접근 가능
                     .authenticated()
-                // "/manager" 와 같은 url path로 접근할 경우...
-                .requestMatchers("/manager/**")
-                    // ADMIN, MANAGER이라는 권한을 갖은 사용자만 접근 가능 
-                    .hasAnyAuthority("MANAGER", "ADMIN")
                 // "/admin" 와 같은 url path로 접근할 경우...
                 .requestMatchers("/admin/**")
                     // ADMIN이라는 권한을 갖은 사용자만 접근 가능 
