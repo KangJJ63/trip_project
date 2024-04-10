@@ -32,12 +32,12 @@ public class AuthController {
         if (errorMessage != null) {
             model.addAttribute("errorMessage", errorMessage);
         }
-        return "login/loginPage";
+        return "auth/loginPage";
     }
 
     @GetMapping("/join")
     public String joinPage() {
-        return "login/joinPage";
+        return "auth/joinPage";
     }
 
     @PostMapping("/join")
@@ -66,7 +66,7 @@ public class AuthController {
         // }
         model.addAttribute("userId", targetDto.getUserId());
         log.info("[find_pw1-2]: " + model);
-        return "login/findPw";
+        return "auth/findPw";
     }
 
     @PostMapping("/confirm-id") // Id 중복확인
@@ -113,7 +113,7 @@ public class AuthController {
     @GetMapping("/find-id")
     public String findIdPage(@RequestParam(value = "erroMessage", required = false) String errorMessage, Model model) {
         model.addAttribute("errorMessage", errorMessage);
-        return "login/findIdPage";
+        return "auth/findIdPage";
     }
 
     @PostMapping("/find-id")
@@ -122,10 +122,10 @@ public class AuthController {
         UserDto userDto = userService.findByUserEmail(userEmail);
         if (userDto != null) {
             model.addAttribute("userId", userDto.getUserId());
-            return "login/userIdPage";
+            return "auth/userIdPage";
         } else {
             model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");
-            return "login/findIdPage";
+            return "auth/findIdPage";
         }
     }
 

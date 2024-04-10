@@ -107,13 +107,18 @@ public class UserServiceImpl implements UserService{
 
     public UserDto findByUserId(String userId){
         UserEntity userEntity = userDao.findByUserId(userId);
-        UserDto userDto = new UserDto();
-        userDto.setUserId(userEntity.getUserId());
-        userDto.setUserNm(userEntity.getUserNm());
-        userDto.setUserEmail(userEntity.getUserEmail());
-        userDto.setRole(userEntity.getRole());
-        return userDto;
+        if(userEntity !=null){
+            UserDto userDto = new UserDto();
+            userDto.setUserId(userEntity.getUserId());
+            userDto.setUserNm(userEntity.getUserNm());
+            userDto.setUserEmail(userEntity.getUserEmail());
+            userDto.setRole(userEntity.getRole());
+            return userDto;
+        }
+        return null;
     }
+        
+        
 
     @Override
     public List<UserEntity> findAllUser() {

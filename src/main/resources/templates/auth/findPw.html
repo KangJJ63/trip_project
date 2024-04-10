@@ -1,60 +1,8 @@
 {{>common/header}}
 <title>비밀번호 찾기</title>
-
+<link rel="stylesheet" type="text/css" href="/static/css/auth/find_pw.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<script type="text/javascript">
-	$(function(result){		
-		if($("#joinForm").submit(function(result){
-            if ($("#userPw").val() !== $("#userPw2").val()){
-				alert("PW가 서로 다릅니다.");
-				$("#userPw").val("").focus();
-				$("#userPw2").val("");
-				return false;
-			} else if($.trim($("#userPw").val()) !== $("#userPw").val()){
-				alert("공백은 PW로 사용할 수 없습니다.");
-				$("#userPw").val("").focus();
-				$("#userPw2").val("");
-				return false;
-            } else if ($("#userPw").val().length <= 4) {
-				alert("PW가 4자리 이하입니다.");
-				$("#userPw").val("").focus();
-				$("#userPw2").val("");
-				return false;
-            }
-		}));
-	})
-</script>
-
-<style>
-    .join_title{
-		font-weight: 700;
-		color: #2d2c2c;
-		margin-top: 60px;
-		margin-bottom: 30px;
-	}
-    .join_card{
-        width:60%;
-        height:100%;
-    }
-    .join_btn{
-		width: 100px;
-		display: flex;
-		font-size: 13px;
-		font-weight: 700;
-		background-color: #350a4e;
-		color: #fff;
-		text-transform: uppercase;
-		line-height: 40px;
-		padding-left: 46px;
-		padding-right: 46px;
-		white-space: nowrap;
-		z-index: 2;
-	}
-    .join_btn:hover{
-        background-color: #fa9e1b;
-    }
-</style>
+<script src="/static/js/auth/find_pw.js"></script>
 
 <body>
     <div class="menu_content d-flex flex-column align-items-center justify-content-left text-center">
