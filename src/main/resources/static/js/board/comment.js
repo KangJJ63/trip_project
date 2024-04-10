@@ -24,7 +24,7 @@ const main = {
         let headers = { ...header };
         headers['body'] = JSON.stringify(data);
 
-        fetch("/comments/save", headers).then((response) => window.location.reload());
+        fetch("/user/comment/save", headers).then((response) => window.location.reload());
     },
 
     commentUpdate: function (tag) {
@@ -38,7 +38,7 @@ const main = {
         let headers = { ...header };
         headers['body'] = JSON.stringify(data);
 
-        fetch("/comments/update", headers).then((response) => window.location.reload());
+        fetch("/user/comment/update", headers).then((response) => window.location.reload());
     },
     commentDelete: function (tag) {
         let form = $(tag).closest('.comments_panel').find('form');
@@ -51,7 +51,7 @@ const main = {
         let headers = { ...header };
         headers['body'] = JSON.stringify(data);
 
-        fetch("/comments/delete", headers).then((response) => window.location.reload());
+        fetch("/user/comment/delete", headers).then((response) => window.location.reload());
     }
 };
 main.init();

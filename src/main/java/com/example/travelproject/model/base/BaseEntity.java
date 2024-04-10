@@ -1,4 +1,4 @@
-package com.example.travelproject.config.base;
+package com.example.travelproject.model.base;
 
 import java.time.LocalDateTime;
 

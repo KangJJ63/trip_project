@@ -76,14 +76,17 @@ public class CommentServiceImpl implements CommentService {
             commentDto.setNoticeId(commentEntity.getBoard().getNoticeId());
             commentDto.setContents(commentEntity.getContents());
             commentDto.setCreateDate(localtimeToString(commentEntity.getCreateDate()));
-            
-            if(userId!=null && 
-                !userId.isEmpty() &&
-            userId.equals(commentEntity.getUser().getUserId()) || 
-            userDao.findByUserId(userId).getRole().equals("ADMIN")){
-                commentDto.setSameUserYn(true);
-            }else{
-                commentDto.setSameUserYn(false);
+
+            // 기본 sameUserYn = false로 설정.
+            commentDto.setSameUserYn(false);
+
+            // userId가 빈값이 아니며,
+            if(userId != null && !userId.isEmpty()){
+                // 댓글 id가 유저 id와 같거나, 해당 유저가 admin이면 sameUserYn = true 설정.
+                if(userId.equals(commentEntity.getUser().getUserId()) ||
+                    userDao.findByUserId(userId).getRole().equals("ADMIN")){
+                        commentDto.setSameUserYn(true);
+                    }
             }
             commentDtos.add(commentDto);
         }

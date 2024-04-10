@@ -33,12 +33,12 @@
 				<div class="row">
 					<div class="col d-flex justify-content-end notice_btn">
 						<form id="noticeTask" class = "btn my-1 px-1 py-0" method = "post">
-							<input type="hidden" id="uptNoticeId" name="noticeId" value="{{noticeId}}">
+							<!-- <input type="hidden" id="boardNoticeId" name="noticeId" value="{{noticeId}}"> -->
 							<div class="d-flex flex-row justify-content-end">
 								<a class="btn notice_save_btn my-1 px-1 py-0 mr-2" role="button" href="/board" style="font-size:15px;">목록</a>
 								{{#adminYn}}
-									<a class="btn notice_save_btn my-1 px-1 py-0 mr-2" role="button" href="/board/notice/{{notice.noticeId}}/edit" style="font-size:15px;">수정</a>
-									<button class="btn notice_del_btn my-1 px-1 py-0" style="font-size:15px;" onclick="confirmDelete()" type="button">삭제</button>
+									<a class="btn notice_save_btn my-1 px-1 py-0 mr-2" role="button" href="/admin/notice/{{notice.noticeId}}/edit" style="font-size:15px;">수정</a>
+									<button class="btn notice_del_btn my-1 px-1 py-0" style="font-size:15px;" onclick="confirmDelete('{{noticeId}}')" type="button">삭제</button>
 								{{/adminYn}}
 							</div>
 						</form>
@@ -74,15 +74,9 @@
 								</div>
 								<div class="row">
 									<div class="col">
-										<input type="hidden" id="uptUserId" name="userId" value="{{loginUserId}}">
+										<input type="hidden" id="uptUserId" name="userId" value="{{userId}}">
 										<input type="hidden" id="uptNoticeId" name="noticeId" value="{{noticeId}}">
 										<input type="hidden" id="uptCommentId" name="commentId" value="{{commentId}}">
-										<!-- {{#sameUserYn}}
-										<div class="row d-flex justify-content-end mt-1">
-											<button id="commentUptBtn" class="btn comment_update_btn mb-1 px-1 py-0 mr-2" onclick="commentUpdate(this)" type="button">수정</button>
-											<button id="commentDelBtn" class="btn comment_del_btn mb-1 px-1 py-0" onclick="commentDelete(this)" type="button">삭제</button>
-										</div>
-										{{/sameUserYn}} -->
 									</div>
 								</div>
 							</form>
@@ -90,12 +84,12 @@
 				</div>
 			</div>
 			{{/commentDtos}}
-			{{#loginUserId}}
+			{{#userId}}
 			<div class="row">
 				<div class="col">
 					<div class="comments_panel">
 						<form class="mt-3" method="post">
-							<input type="hidden" id="submitUserId" name="userId" value="{{loginUserId}}">
+							<input type="hidden" id="submitUserId" name="userId" value="{{userId}}">
 							<input type="hidden" id="submitNoticeId" name="noticeId" value="{{notice.noticeId}}">
 							<div class="mb-3">
 								<label for="commentContents" class="commentLabel">댓글</label>
@@ -108,83 +102,14 @@
 					</div>
 				</div>
 			</div>
-			{{/loginUserId}}
+			{{/userId}}
 		</div>
 		
 	</div>
 </body>
 
-<!-- <script>
-    function confirmDelete() {
-        if (confirm("정말로 삭제하시겠습니까?")) {
-            document.getElementById("noticeTask").action = "/board/notice/{{noticeId}}/delete";
-            document.getElementById("noticeTask").submit();
-        }
-    }
-</script> -->
-
 {{>common/footer}}	
 <script src="/static/js/board/notice.js"></script>
 <script src="/static/js/board/comment.js"></script>
-<!-- <script>
-	const header={
-				method : "POST",
-				headers : {
-					"Content-Type":"application/json",
-				}
-			}
-	const main = {
-		
-		init : function(){
-			const _this = this;
-			
-
-			$('#commentSaveBtn').on('click',function(){
-				_this.commentSave();
-			});
-		},
-		commentSave : function(){
-			let data = {
-				userId : $("#submitUserId").val(),
-				noticeId : parseInt($("#submitNoticeId").val()),
-				contents : $("#submitCommentContents").val()
-			}
-			
-			let headers = {...header};
-			headers['body'] = JSON.stringify(data);
-
-			fetch("/comments/save",headers).then((response)=>window.location.reload());
-		},
-
-		commentUpdate : function(tag){
-			let form = $(tag).closest('.comments_panel').find('form');
-			let data = {
-				commentId : form.find("#uptCommentId").val(),
-				userId : form.find("#uptUserId").val(),
-				noticeId : parseInt(form.find("#uptNoticeId").val()),
-				contents : form.find("#uptContents").val()
-			}
-			let headers = {...header};
-			headers['body'] = JSON.stringify(data);
-
-			fetch("/comments/update",headers).then((response)=>window.location.reload());
-		},
-		commentDelete : function(tag){
-			let form = $(tag).closest('.comments_panel').find('form');
-			let data = {
-				commentId : form.find("#uptCommentId").val(),
-				userId : form.find("#uptUserId").val(),
-				noticeId : parseInt(form.find("#uptNoticeId").val()),
-				contents : form.find("#uptContents").val()
-			}
-			let headers = {...header};
-			headers['body'] = JSON.stringify(data);
-
-			fetch("/comments/delete",headers).then((response)=>window.location.reload());
-		}
-	};
-	main.init();
-</script> -->
-<!-- <script src="/static/js/bootstrap.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>

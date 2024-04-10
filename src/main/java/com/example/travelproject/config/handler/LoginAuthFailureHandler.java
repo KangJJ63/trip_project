@@ -33,6 +33,6 @@ public class LoginAuthFailureHandler extends SimpleUrlAuthenticationFailureHandl
     int code = authenticationTypes.getCode();
     log.error("[LoginAuthFailureHandler][writePrintErrorResponse] > message: " + errorMessage + " / code: "+code);
     errorMessage = URLEncoder.encode(errorMessage, "UTF-8"); /* 한글 인코딩 깨진 문제 방지 */
-    setDefaultFailureUrl("/loginPage?errorMessage="+errorMessage); // 주소창에 에러메시지 추가해줌
+    setDefaultFailureUrl("/auth/login?errorMessage="+errorMessage); // 주소창에 에러메시지 추가해줌
     } 
 }

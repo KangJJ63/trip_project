@@ -1,5 +1,7 @@
 package com.example.travelproject.model.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,4 +46,10 @@ public class UserDaoImpl implements UserDao{
         return userRepository.findByUserEmail(userEmail);
     }
 
+    @Override
+    public List<UserEntity> findAllUser() {
+        return userRepository.findAllUser();
+    }
+
+    
 }

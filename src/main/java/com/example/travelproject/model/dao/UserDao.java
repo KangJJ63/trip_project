@@ -1,5 +1,7 @@
 package com.example.travelproject.model.dao;
 
+import java.util.List;
+
 import com.example.travelproject.model.entity.UserEntity;
 
 public interface UserDao {
@@ -16,4 +18,5 @@ public interface UserDao {
 
     public UserEntity findByUserEmail(String userEmail);
 
+    public List<UserEntity> findAllUser();
 }

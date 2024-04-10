@@ -35,27 +35,31 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
     userService.updateIsLoginById(userDetails.getUsername(), true);
     
     if (userDetails.getUsername() == null) {
-      response.sendRedirect("/index");
+      response.sendRedirect("/main");
     }else{
       HttpSession session = request.getSession();
       UserDto dto = userService.findByUserId(userDetails.getUsername());
 
-      session.setAttribute("loginUserId",dto.getUserId());
-      session.setAttribute("loginUserName", dto.getUserNm());
+      // session.setAttribute("loginUserId",dto.getUserId());
+      session.setAttribute("userNm", dto.getUserNm());
       if(dto.getRole().equals("ADMIN")){
-        session.setAttribute("adminYn", dto.getUserNm());
-      }else{
-        session.setAttribute("adminYn",false);
+        session.setAttribute("adminYn", true);
       }
+      
+        
+      // }else{
+      //   session.setAttribute("adminYn",false);
+      // }
       
       log.info("loginUserId : "+dto.getUserId() +" loginRole : " + dto.getRole() + " loginUserName : "+dto.getUserNm());
       log.info("Authorities : "+userDetails.getAuthorities());
 
-      if (userDetails.getUsername().equals("admin")) {
-      response.sendRedirect("/admin/index");
-      } else {
-      response.sendRedirect("/user/index");
-      }
+      // if (userDetails.getUsername().equals("admin")) {
+      // response.sendRedirect("/admin/index");
+      // } else {
+      // response.sendRedirect("/user/index");
+      // }
+      response.sendRedirect("/main");
     super.onAuthenticationSuccess(request, response, authentication);
     }
   }

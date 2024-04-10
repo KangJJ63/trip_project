@@ -74,7 +74,7 @@
 </style>
 
 <body>
-    <h3>관리자 {{adminYn}}님</h3>
+    <h3>관리자 {{userNm}}님</h3>
 <div class="userList pb-3 mb-7">
 	<div class="container">
 		<div class="user_panel">
@@ -99,18 +99,9 @@
 				<div class="col-3 align-items-center text-center">
 					<p>가입일</p>
                 </div>
-				<div class="col-3 align-items-center">
+				<div class="col-5 align-items-center">
 					<p>전화번호</p>
 				</div>
-				<!-- <div class="col-1 align-items-center">
-					<p>게시글수</p>
-				</div>
-				<div class="col-1 align-items-center">
-					<p>댓글수</p>
-				</div>
-				<div class="col-1 align-items-center">
-					<p>가입승인</p>
-				</div> -->
             </div>
             {{#userlist}}
 			<div class="list_row row my-0">
@@ -129,7 +120,7 @@
 				<div class="col-3 d-flex py-0 justify-content-center">
 					<p>{{createDate}}</p>
 				</div>
-				<div class="col-1 d-flex py-0">
+				<div class="col-5 d-flex py-0">
 					<p>{{userPhNmb}}</p>
 				</div>
             </div>
@@ -139,7 +130,7 @@
     </div>
 </div>
 <div>
-    <a href="/index">
+    <a href="/main">
         <input class="btn home_btn d-flex justify-content-center" type="submit" style="width: 100%;" style="width:60%;height:100%;" value="홈으로 이동">
     </a>
     <br>

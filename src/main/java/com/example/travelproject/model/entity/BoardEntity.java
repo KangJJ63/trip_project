@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
 
-import com.example.travelproject.config.base.BaseEntity;
+import com.example.travelproject.model.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;

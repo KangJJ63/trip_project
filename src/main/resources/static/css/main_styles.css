@@ -1810,65 +1810,6 @@ section
 	background-size: cover;
 	background-position: center center;
 }
-.contact_title
-{
-	font-size: 30px;
-	font-weight: 700;
-	color: #FFFFFF;
-	text-transform: uppercase;
-}
-.contact_form_container
-{
-	padding-top: 74px;
-	padding-left: 48px;
-	padding-right: 48px;
-	padding-bottom: 88px;
-	background: linear-gradient(to top right, #fa9e1b, #8d4fff);
-}
-.contact_form
-{
-	margin-top: 52px;
-	font-size: 0px;
-}
-.input_field
-{
-	height: 48px;
-	font-size: 12px;
-	font-weight: 400;
-	border: none;
-	outline: none;
-	background: transparent;
-	color: #FFFFFF;
-	border-bottom: solid 2px #e1e1e1;
-}
-.contact_form_name
-{
-	width: calc((100% - 30px) / 2);
-	margin-right: 30px;
-}
-.contact_form_email
-{
-	width: calc((100% - 30px) / 2);
-}
-.contact_form_subject
-{
-	width: 100%;
-	margin-top: 11px;
-}
-.contact_form_message
-{
-	height: 126px;
-	width: 100%;
-	border: none;
-	outline: none;
-	margin-top: 19px;
-	background: transparent;
-	font-size: 12px;
-	font-weight: 400;
-	color: #FFFFFF;
-	border-bottom: solid 2px #e1e1e1;
-	padding-top: 11px;
-}
 .form_submit_button
 {
 	font-size: 13px;
@@ -1898,7 +1839,7 @@ section
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: grey !important;
 }
 .input_field:-moz-placeholder,
 .text_field:-moz-placeholder
@@ -2136,7 +2077,7 @@ section
 .contact_info_text,
 .contact_info_text a
 {
-	color: #FFFFFF;
+	color: #8d4fff;
 	line-height: 2.14;
 	margin-top: -4px;
 }

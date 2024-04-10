@@ -27,17 +27,16 @@ public class LogoutAuthSuccesshandler implements LogoutSuccessHandler {
   public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
       throws IOException, ServletException {
         if (authentication == null) {
-          response.sendRedirect("/index");
+          response.sendRedirect("/main");
         } else {
           UserDetails userDetails = (UserDetails) authentication.getPrincipal();
           userService.updateIsLoginById(userDetails.getUsername(), false);
           HttpSession session = request.getSession();
           
-          session.removeAttribute("loginUserName");
-          session.removeAttribute("loginUserId");
+          session.removeAttribute("userNm");
           session.removeAttribute("adminYn");
 
-          response.sendRedirect("/index");
+          response.sendRedirect("/main");
         }
         }
   

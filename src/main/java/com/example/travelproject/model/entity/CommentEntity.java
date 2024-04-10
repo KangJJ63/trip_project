@@ -1,6 +1,6 @@
 package com.example.travelproject.model.entity;
 
-import com.example.travelproject.config.base.BaseEntity;
+import com.example.travelproject.model.base.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

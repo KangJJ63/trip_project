@@ -1,73 +1,7 @@
 {{>common/header}}
 <title>로그인</title>
-
+<link rel="stylesheet" type="text/css" href="/static/css/auth/login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<style>
-    .login_card{
-        width:60%;
-        height:100%;
-    }
-	/* The Modal (background) */
-	.modal {
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1050; /* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	}
-
-	/* Modal Content/Box */
-	.modal-content {
-		background-color: #fefefe;
-		margin: 15% auto; /* 15% from the top and centered */
-		padding: 20px;
-		border: 1px solid #888;
-		width: 30%; /* Could be more or less, depending on screen size */                          
-	}
-    .login_title{
-		font-weight: 700;
-		color: #2d2c2c;
-		margin-top: 60px;
-		margin-bottom: 30px;
-	}
-    .login_btn{
-		width: 100px;
-		display: flex;
-		font-size: 13px;
-		font-weight: 700;
-		background-color: #350a4e;
-		color: #fff;
-		text-transform: uppercase;
-		line-height: 40px;
-		padding-left: 46px;
-		padding-right: 46px;
-		white-space: nowrap;
-		z-index: 2;
-	}
-    .login_btn:hover{
-        background-color: #fa9e1b;
-    }
-    .find_separator {
-    margin: 0 5px; 
-    }
-    #find_wrap{
-        width:100%;
-    }
-    .find_text{
-        color:#007bff
-    }
-    .find_text:hover {
-        color: #011d3b; /* 원하는 색상으로 변경하세요 */
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-</style>
 
 <body>
 
@@ -118,11 +52,11 @@
                         </div> 
                         <div class="row d-flex  my-3">
                             <ul class="list-inline d-flex flex-row justify-content-center" id="find_wrap">
-                                <li><a href="/findIdPage" class="find_text">아이디 찾기</a></li>
+                                <li><a href="/auth/find-id" class="find_text">아이디 찾기</a></li>
                                 <li class="find_separator">|</li>
                                 <li><a onclick="open_pop();" class="find_text">비밀번호 찾기</a></li>
                                 <li class="find_separator">|</li>
-                                <li><a href="/joinPage" class="find_text">회원가입</a></li>
+                                <li><a href="/auth/join" class="find_text">회원가입</a></li>
                             </ul>
                         </div>
                     </div>
@@ -134,8 +68,12 @@
                     <p style="text-align: center;">
                         <span style="font-size: 14pt;">
                             <b><span style="font-size: 15pt;">아이디를 입력하세요.</span></b></span></p>
-                    <form name="loginForm" action="/findPw" method="post">
+                    <form name="loginForm" action="/auth/find-password" method="post">
                         <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." autofocus>
+                        <br>
+                        <input type="text" id="userNm" name="userNm" placeholder="이름 입력하세요.">
+                        <br>
+                        <input type="text" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요.">
                         <br>
                         <input type="submit" value="조회하기">
                     </form>

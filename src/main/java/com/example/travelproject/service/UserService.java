@@ -1,5 +1,7 @@
 package com.example.travelproject.service;
 
+import java.util.List;
+
 import com.example.travelproject.model.dto.UserDto;
 import com.example.travelproject.model.entity.UserEntity;
 
@@ -14,10 +16,14 @@ public interface UserService {
 
     public void joinUserDto(UserEntity dto);
 
-    public void updateUserDto(UserEntity dto);
+    public void updateUserDto(UserDto dto);
 
     public String findUserIdByEmail(String userNm, String userEmail);
 
     public UserDto findByUserId(String username);
+
+    public UserDto findByUserEmail(String email);
+    
+    public List<UserEntity> findAllUser();
 
 }
