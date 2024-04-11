@@ -1,6 +1,5 @@
 package com.example.travelproject.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.model.repository.UserRepository;
 import com.example.travelproject.service.UserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -81,8 +81,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String findUserIdByEmail(String userNm, String userEmail) {
+    public String findUserIdByEmail(String userNm, String userEmail) throws Exception{
         UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
+        if(entity == null){
+            throw new EntityNotFoundException();
+        }
         log.info("[UserService][findUserIdByEamil] Start");
         return entity.getUserId();
         

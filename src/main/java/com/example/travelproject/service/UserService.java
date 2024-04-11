@@ -18,7 +18,7 @@ public interface UserService {
 
     public void updateUserDto(UserDto dto);
 
-    public String findUserIdByEmail(String userNm, String userEmail);
+    public String findUserIdByEmail(String userNm, String userEmail) throws Exception;
 
     public UserDto findByUserId(String username);
 

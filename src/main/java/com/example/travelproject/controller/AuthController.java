@@ -118,7 +118,7 @@ public class AuthController {
     }
 
     @PostMapping("/find-id")
-    public String findUserId(String userNm, String userEmail, Model model) {
+    public String findUserId(String userNm, String userEmail, Model model) throws Exception {
         log.info("[MainController][findUserId] " + userNm + userEmail);
         // UserDto userDto = userService.findByUserEmail(userEmail);
         String userId = userService.findUserIdByEmail(userNm, userEmail);
