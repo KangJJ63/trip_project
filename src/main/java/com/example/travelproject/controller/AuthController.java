@@ -17,6 +17,7 @@ import com.example.travelproject.model.entity.UserEntity;
 import com.example.travelproject.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,7 +42,7 @@ public class AuthController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute UserEntity dto) {
+    public String join(@Valid @ModelAttribute UserEntity dto) throws Exception {
 
         userService.joinUserDto(dto);
         return "redirect:/auth/login";
@@ -119,14 +120,17 @@ public class AuthController {
     @PostMapping("/find-id")
     public String findUserId(String userNm, String userEmail, Model model) {
         log.info("[MainController][findUserId] " + userNm + userEmail);
-        UserDto userDto = userService.findByUserEmail(userEmail);
-        if (userDto != null) {
-            model.addAttribute("userId", userDto.getUserId());
-            return "auth/userIdPage";
-        } else {
-            model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");
-            return "auth/findIdPage";
-        }
+        // UserDto userDto = userService.findByUserEmail(userEmail);
+        String userId = userService.findUserIdByEmail(userNm, userEmail);
+        model.addAttribute("userId", userId);
+        return "auth/userIdPage";
+        // if (userDto != null) {
+        //     model.addAttribute("userId", userDto.getUserId());
+        //     return "auth/userIdPage";
+        // } else {
+        //     model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");
+        //     return "auth/findIdPage";
+        // }
     }
 
 }

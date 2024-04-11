@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService{
     }
 
     public void joinUserDto(UserEntity dto) {
-
         // 권한 적용
         dto.setRole("USER");
         if (dto.getUserId().equals("admin")) {
@@ -85,11 +84,13 @@ public class UserServiceImpl implements UserService{
     public String findUserIdByEmail(String userNm, String userEmail) {
         UserEntity entity = userRepository.getUserIdByEmail(userNm, userEmail);
         log.info("[UserService][findUserIdByEamil] Start");
-        if (entity != null) {
-            return entity.getUserId();
-        } else {
-            return null; // 이메일에 해당하는 사용자를 찾을 수 없는 경우
-        }
+        return entity.getUserId();
+        
+        // if (entity != null) {
+        //     return entity.getUserId();
+        // } else {
+        //     return null; // 이메일에 해당하는 사용자를 찾을 수 없는 경우
+        // }
     }
 
     @Override

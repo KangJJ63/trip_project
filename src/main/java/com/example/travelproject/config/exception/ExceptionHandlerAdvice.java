@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.travelproject.config.constant.CommonErrorCode;
+import com.example.travelproject.config.constant.EntityErrorCode;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -64,21 +65,21 @@ public class ExceptionHandlerAdvice {
             return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
         }
     
-        // //중복 회원 예외처리
-        // @ExceptionHandler(DuplicateException.class)
-        // public ResponseEntity handleHttpClientErrorException(DuplicateException e){
-        //         log.error("[DuplicateMemberException : Conflict] cause: {}, message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
-        //         ErrorCode errorCode = MemberErrorCode.MEMBER_ALREADY_EXISTS_ERROR;
-        //         ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), e.getMessage()+ errorCode.getMessage());
-        //         return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
-        // }
+        //중복 회원 예외처리
+        @ExceptionHandler(DuplicateException.class)
+        public ResponseEntity handleHttpClientErrorException(DuplicateException e){
+                log.error("[DuplicateMemberException : Conflict] cause: {}, message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
+                ErrorCode errorCode = EntityErrorCode.MEMBER_ALREADY_EXISTS_ERROR;
+                ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), e.getMessage()+ errorCode.getMessage());
+                return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
+        }
     
-        // @ExceptionHandler(EntityNotFoundException.class)
-        // public ResponseEntity handleEntityNotFoundException(EntityNotFoundException e){
-        //     log.error("[EntityNotFoundException] cause:{}, message: {}", NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
-        //     ErrorCode errorCode = MemberErrorCode.MEMBER_NOT_FOUND_ERROR;
-        //     ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), errorCode.getMessage());
-        //     return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
-        // }
+        @ExceptionHandler(EntityNotFoundException.class)
+        public ResponseEntity handleEntityNotFoundException(EntityNotFoundException e){
+            log.error("[EntityNotFoundException] cause:{}, message: {}", NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
+            ErrorCode errorCode = EntityErrorCode.MEMBER_NOT_FOUND_ERROR;
+            ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), errorCode.getMessage());
+            return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
+        }
     
 }

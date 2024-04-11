@@ -14,7 +14,6 @@ import com.example.travelproject.model.dto.BoardDto;
 import com.example.travelproject.model.dto.CommentDto;
 import com.example.travelproject.service.BoardService;
 import com.example.travelproject.service.CommentService;
-import com.example.travelproject.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -65,10 +64,6 @@ public class PublicController {
     @GetMapping("/board/notice/{noticeId}")
     public String viewNotice(@PathVariable("noticeId") Long noticeId, Model model,HttpSession session, Authentication authentication){
         log.info("[BoardController][viewNotice] start");
-        // if (authentication == null) {
-        //     return "redirect:/board";
-        // }
-
         boardService.updateViewCnt(noticeId);
         BoardDto boardDto = boardService.findtByNoticeId(noticeId);
         String userId = "";

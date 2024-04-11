@@ -1,5 +1,8 @@
 package com.example.travelproject.model.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +15,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class UserDto {
+    @NotBlank
     private String userId;
+    @NotBlank
     private String userPw;
+    @Email
     private String userEmail;
+    @NotBlank
     private String userNm;
     private String userSex;
+
+    @Pattern(regexp="010-\\d{4}-\\d{4}")
     private String userPhNmb;
     private String role;
     private Boolean isLogin;
