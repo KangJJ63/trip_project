@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.travelproject.config.exception.customExceptions.DuplicateEmailException;
+import com.example.travelproject.config.exception.customExceptions.DuplicateIdException;
 import com.example.travelproject.model.dao.UserDao;
 import com.example.travelproject.model.dto.UserDto;
 import com.example.travelproject.model.entity.UserEntity;
@@ -41,7 +43,13 @@ public class UserServiceImpl implements UserService{
         userRepository.save(dto);
     }
 
-    public void joinUserDto(UserEntity dto) {
+    public void joinUserDto(UserEntity dto) throws Exception {
+        if(findByUserId(dto.getUserId()) != null){
+            throw new DuplicateIdException(dto.getUserId());
+        }
+        if(findByUserEmail(dto.getUserEmail()) != null){
+            throw new DuplicateEmailException(dto.getUserEmail());
+        }
         // 권한 적용
         dto.setRole("USER");
         if (dto.getUserId().equals("admin")) {
@@ -88,12 +96,6 @@ public class UserServiceImpl implements UserService{
         }
         log.info("[UserService][findUserIdByEamil] Start");
         return entity.getUserId();
-        
-        // if (entity != null) {
-        //     return entity.getUserId();
-        // } else {
-        //     return null; // 이메일에 해당하는 사용자를 찾을 수 없는 경우
-        // }
     }
 
     @Override
@@ -128,22 +130,4 @@ public class UserServiceImpl implements UserService{
     public List<UserEntity> findAllUser() {
         return userDao.findAllUser();
     }
-
-    // @Override
-    // public UserDto findByUserId(String userId) {
-    //     UserEntity entity = userDao.findByUserId(userId);
-    //     UserDto dto = new UserDto();
-    //     dto.setUserId(entity.getUserId());
-    //     dto.setUserPw(entity.getUserPw());
-    //     dto.setUserEmail(entity.getUserEmail());
-    //     dto.setUserNm(entity.getUserNm());
-    //     dto.setUserPhNmb(entity.getUserPhNmb());
-    //     dto.setRole(entity.getRole());
-    //     dto.setUserSex(entity.getUserSex());
-    //     dto.setRole(entity.getRole());
-        
-    //     return null;
-    // }
-
-    
 }

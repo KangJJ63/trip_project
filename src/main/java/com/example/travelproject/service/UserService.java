@@ -14,7 +14,7 @@ public interface UserService {
     // 로그인 성공시 >> 로그인 유무 저장
     public void updateIsLoginById(String id, Boolean isLogin);
 
-    public void joinUserDto(UserEntity dto);
+    public void joinUserDto(UserEntity dto) throws Exception;
 
     public void updateUserDto(UserDto dto);
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.travelproject.config.constant.CommonErrorCode;
 import com.example.travelproject.config.constant.EntityErrorCode;
+import com.example.travelproject.config.exception.customExceptions.DuplicateEmailException;
+import com.example.travelproject.config.exception.customExceptions.DuplicateIdException;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -65,14 +67,23 @@ public class ExceptionHandlerAdvice {
         }
     
         //중복 회원 예외처리
-        @ExceptionHandler(DuplicateException.class)
-        public ResponseEntity handleHttpClientErrorException(DuplicateException e){
-                log.error("[DuplicateMemberException : Conflict] cause: {}, message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
-                ErrorCode errorCode = EntityErrorCode.MEMBER_ALREADY_EXISTS_ERROR;
-                ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), e.getMessage()+ errorCode.getMessage());
-                return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
-        }
-    
+        // @ExceptionHandler(DuplicateIdException.class)
+        // public ResponseEntity handleHttpClientErrorException(DuplicateIdException e){
+        //         log.error("[DuplicateMemberException : Conflict] cause: {}, message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
+        //         ErrorCode errorCode = EntityErrorCode.MEMBER_ID_ALREADY_EXISTS_ERROR;
+        //         ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), e.getMessage()+ errorCode.getMessage());
+        //         return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
+        // }
+        
+        // @ExceptionHandler(DuplicateEmailException.class)
+        // public ResponseEntity handleHttpClientErrorException(DuplicateEmailException e){
+        //         log.error("[DuplicateMemberException : Conflict] cause: {}, message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
+        //         ErrorCode errorCode = EntityErrorCode.MEMBER_ID_ALREADY_EXISTS_ERROR;
+        //         ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(), e.getMessage()+ errorCode.getMessage());
+        //         return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
+        // }
+
+
         @ExceptionHandler(EntityNotFoundException.class)
         public ResponseEntity handleEntityNotFoundException(EntityNotFoundException e){
             log.error("[EntityNotFoundException] cause:{}, message: {}", NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());

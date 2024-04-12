@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.travelproject.model.dto.UserDto;
 import com.example.travelproject.model.entity.UserEntity;
@@ -119,19 +119,13 @@ public class AuthController {
     }
 
     @PostMapping("/find-id")
-    public String findUserId(@ModelAttribute UserDto userDto, Model model) throws Exception {
-        log.info("[MainController][findUserId] " + userDto.getUserNm() + userDto.getUserEmail());
+    public String findUserId(String userNm,String userEmail, Model model) throws Exception {
+        log.info("[MainController][findUserId] " + userNm + userEmail);
         // UserDto userDto = userService.findByUserEmail(userEmail);
-        String userId = userService.findUserIdByEmail(userDto.getUserNm(), userDto.getUserEmail());
+        String userId = userService.findUserIdByEmail(userNm, userEmail);
+        log.info("[userId] = "+userId);
+        // redirectAttributes.addAttribute("userId",userId);
         model.addAttribute("userId", userId);
         return "auth/userIdPage";
-        // if (userDto != null) {
-        //     model.addAttribute("userId", userDto.getUserId());
-        //     return "auth/userIdPage";
-        // } else {
-        //     model.addAttribute("errorMessage", "아이디를 찾을 수 없습니다.");
-        //     return "auth/findIdPage";
-        // }
     }
-
 }

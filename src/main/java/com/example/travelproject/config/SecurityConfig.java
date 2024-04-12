@@ -62,6 +62,9 @@ public class SecurityConfig {
         http
             // http request 요청에 대한 화면 접근(url path) 권한 설정 
             .authorizeHttpRequests(authorize -> authorize
+                // 계정 로그인,아이디 찾기 등은 인증되지 않은 사용자만
+                .requestMatchers("/auth/**")
+                    .anonymous()
                 // "/user" 와 같은 url path로 접근할 경우... 
                 .requestMatchers("/user/**")
                     // 인증(로그인)만 접근 가능
