@@ -39,8 +39,7 @@ public class ExceptionHandlerAdvice {
         public ResponseEntity handleIllegalArgumentException(IllegalArgumentException e){
             log.error("[IlleagalArgumentException] cause: {} , message: {}",NestedExceptionUtils.getMostSpecificCause(e),e.getMessage());
             ErrorCode errorCode = CommonErrorCode.ILLEGAL_ARGUMENT_ERROR;
-            ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(),
-                    String.format("%s %s", errorCode.getMessage(), NestedExceptionUtils.getMostSpecificCause(e).getMessage()));
+            ErrorResponse errorResponse = ErrorResponse.of(errorCode.getHttpStatus(),errorCode.getCode(),errorCode.getMessage());
             return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
         }
     

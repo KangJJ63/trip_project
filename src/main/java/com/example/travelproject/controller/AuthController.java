@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -118,10 +119,10 @@ public class AuthController {
     }
 
     @PostMapping("/find-id")
-    public String findUserId(String userNm, String userEmail, Model model) throws Exception {
-        log.info("[MainController][findUserId] " + userNm + userEmail);
+    public String findUserId(@ModelAttribute UserDto userDto, Model model) throws Exception {
+        log.info("[MainController][findUserId] " + userDto.getUserNm() + userDto.getUserEmail());
         // UserDto userDto = userService.findByUserEmail(userEmail);
-        String userId = userService.findUserIdByEmail(userNm, userEmail);
+        String userId = userService.findUserIdByEmail(userDto.getUserNm(), userDto.getUserEmail());
         model.addAttribute("userId", userId);
         return "auth/userIdPage";
         // if (userDto != null) {
