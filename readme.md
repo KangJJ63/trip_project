@@ -13,8 +13,6 @@
 
 주제 선정 이유: 여행을 다니면서 다양한 어플을 사용해본 결과, 한국인을 위한 어플이 없었고, 여행자들끼리 경로를 공유했으면 좋겠다는 필요성을 느낌
 
-🎬[Demo 시연영상](https://www.youtube.com/watch?v=dhMrKTwNI8U&lc=UgzCJR3WxkvsckRyyO94AaABAg&ab_channel=%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B4%EC%84%9C%EB%B0%B0%EC%9A%B0%EB%8A%94IT)   
-
 ----------
 
 ## ✨ 프로젝트 설명
@@ -31,26 +29,39 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthProvider.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthUserDto.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthUserService.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂base
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseEntity.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜DateUtil.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂constant
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthenticationTypes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthenticationTypes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommonErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EntityErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂exception
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂customExceptions
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DuplicateEmailException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜DuplicateIdException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ExceptionControllerAdvice.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ExceptionHandlerAdvice.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RestApiException.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂handler
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginAuthFailureHandler.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginAuthSuccessHandler.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LogoutAuthSuccesshandler.java
  ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityConfig.java
  ┃ ┃ ┃ ┃ ┣ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┣ 📜BoardController.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentController.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📜LodgeController.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MainController.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MypageController.java
- ┃ ┃ ┃ ┃ ┃ ┗ 📜PlanController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜AdminController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomErrorController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜PublicController.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┃ ┃ ┣ 📂model
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂base
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜DateUtil.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂dao
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂impl
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BoardDaoImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDaoImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDaoImpl.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BoardDao.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDao.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDao.java
@@ -68,32 +79,52 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
  ┃ ┃ ┃ ┃ ┣ 📂service
  ┃ ┃ ┃ ┃ ┃ ┣ 📂impl
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BoardServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserServiceImpl.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📜BoardService.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentService.java
  ┃ ┃ ┃ ┃ ┃ ┗ 📜UserService.java
  ┃ ┃ ┃ ┃ ┗ 📜TravelprojectApplication.java
  ┗ 📂resources
  ┃ ┣ 📂static
+ ┃ ┃ ┣ 📂css
+ ┃ ┃ ┃ ┣ 📂admin
+ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📂board
+ ┃ ┃ ┃ ┣ 📂user
+ ┃ ┃ ┣ 📂fonts
+ ┃ ┃ ┣ 📂img
+ ┃ ┃ ┣ 📂js
+ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📂board
+ ┃ ┃ ┃ ┣ 📂error
+ ┃ ┃ ┃ ┣ 📂user
+ ┃ ┃ ┗ 📂plugins
  ┃ ┣ 📂templates
+ ┃ ┃ ┣ 📂admin
+ ┃ ┃ ┣ 📂auth
  ┃ ┃ ┣ 📂board
  ┃ ┃ ┣ 📂common
  ┃ ┃ ┣ 📂lodge
- ┃ ┃ ┣ 📂login
  ┃ ┃ ┣ 📂plan
- ┃ ┃ ┣ 📂staff
- ┃ ┃ ┣ 📂temp
+ ┃ ┃ ┣ 📂user
+ ┃ ┃ ┣ 📜error.html
  ┃ ┃ ┗ 📜index.html
  ┃ ┣ 📜application.yml
  ┃ ┣ 📜intro_1.jpg
  ┃ ┣ 📜intro_2.jpg
  ┃ ┗ 📜intro_3.jpg
 ```
+📂config : Spring Security, ExceptionHandler 폴더
+
 📂controller  
- 📜BoardController.java : 게시판 페이지  
- 📜CommentController.java : 게시글 내의 페이지  
- 📜MainController.java : 메인 페이지  
- 📜MypageController.java : 마이 페이지  
-  
+ 📜AdminController.java : 관리자 컨트롤러
+ 📜AuthController.java : 계정(회원가입, 아이디 찾기 등) 컨트롤러
+ 📜CustomErrorController.java : ContorllerAdvice 에러 컨트롤러
+ 📜PublicController.java : 미인증 페이지(홈, 게시판 등) 컨트롤러
+ 📜UserController.java : 유저 컨트롤러
+
 📂service  
  📜BoardService.java : 게시판 작성/수정/삭제 기능 구현  
  📜CommentService.java : 댓글 작성/수정/삭제 기능 구현  
@@ -104,7 +135,7 @@
 ## 📌 프로젝트 목표
 
 ```sh
-Mysql를 이용하여 설계를 통한 ERD 작성 및 구현
+Spring과 Mustache 템플릿을 활용한 웹 사이트 및 JPA를 통한 MySql 데이터 통신 구현  
 ```
 
 ----------
