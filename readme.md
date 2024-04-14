@@ -119,14 +119,10 @@
 📂config : Spring Security, ExceptionHandler 폴더
 
 📂controller  
- 📜AdminController.java : 관리자 컨트롤러
- 
- 📜AuthController.java : 계정(회원가입, 아이디 찾기 등) 컨트롤러
- 
- 📜CustomErrorController.java : ContorllerAdvice 에러 컨트롤러
- 
- 📜PublicController.java : 미인증 페이지(홈, 게시판 등) 컨트롤러
- 
+ 📜AdminController.java : 관리자 컨트롤러<br>
+ 📜AuthController.java : 계정(회원가입, 아이디 찾기 등) 컨트롤러<br>
+ 📜CustomErrorController.java : ContorllerAdvice 에러 컨트롤러<br>
+ 📜PublicController.java : 미인증 페이지(홈, 게시판 등) 컨트롤러<br>
  📜UserController.java : 유저 컨트롤러
 
 📂service  
