@@ -120,9 +120,13 @@
 
 📂controller  
  📜AdminController.java : 관리자 컨트롤러
+ 
  📜AuthController.java : 계정(회원가입, 아이디 찾기 등) 컨트롤러
+ 
  📜CustomErrorController.java : ContorllerAdvice 에러 컨트롤러
+ 
  📜PublicController.java : 미인증 페이지(홈, 게시판 등) 컨트롤러
+ 
  📜UserController.java : 유저 컨트롤러
 
 📂service  
